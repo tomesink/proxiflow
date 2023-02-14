@@ -1,0 +1,32 @@
+input_format: csv
+output_format: csv
+
+data_cleaning:
+  handle_missing_values:
+    drop: true
+    mean: true
+    mode: false
+  remove_duplicates: true
+
+data_normalization:
+  min_max: true
+  z_score: false
+  log: false
+
+feature_engineering:
+  one_hot_encoding:
+    - gender
+    - ethnicity
+
+  feature_scaling:
+    columns:
+      - height
+      - weight
+    range:
+      - 0
+      - 1
+
+  feature_selection:
+    - age
+    - gender
+    - income
