@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adprep"
+version = "0.1.0"
+description = "Data Preprocessing tool in python"
+author = "Martin Tomes"
+author_email = "tomesm@gmail.com"
+url = "https://github.com/tomesm/adprep"
+license= "MIT"
+classifiers = [
+   "Programming Language :: Python :: 3",
+   "Operating System :: OS Independent",
+]
+
+[tool.setuptools.packages]
+find = {}
+
+[tool.black.format]
+max-line-length = 120
+extend-ignore = "E203"
+
+[tool.flakeheaven]
+exclude = ["README.rst", "README.md"]
+format = "colored"
+max_line_length = 90
+show_source = true
+# whitelist = "../../allowlist.txt"
+
+[tool.flakeheaven.plugins]
+# flake8-bandit = ["+*", "-S322"]
+# flake8-bugbear = ["+*"]
+# flake8-builtins = ["+*"]
+# flake8-comprehensions = ["+*"]
+# flake8-darglint = ["+*"]
+# flake8-docstrings = ["+*"]
+# flake8-eradicate = ["+*"]
+# flake8-isort = ["+*"]
+# flake8-mutable = ["+*"]
+# flake8-pytest-style = ["+*"]
+# flake8-spellcheck = ["+*"]
+# pep8-naming = ["+*"]
+mccabe = ["+*"]
+pycodestyle = ["+*"]
+pylint = ["+*"]
+pyflakes = ["+*"]

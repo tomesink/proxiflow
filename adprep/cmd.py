@@ -1,8 +1,9 @@
-# adprep/main.py
+import polars as pl
+import click
 
-from .config import *
-# from data.data_loader import load_data
-# from preprocessing.data_cleaning import clean_data
+from .config import Config
+from .utils.logger import get_logger
+from .preprocessor import Preprocessor
 
 # from preprocessing.data_normalization import normalize_data
 # from preprocessing.feature_engineering import engineer_features
@@ -10,27 +11,32 @@ from .config import *
 # from utils.logger import get_logger
 
 
+def load_data(data_file):
+    return pl.read_csv(data_file)
 
 
+@click.group(invoke_without_command=True, no_args_is_help=True)
+@click.option("--config-file", "-c", required=True, type=click.Path(exists=True), help="Path to configuration file")
+@click.option("--input-file", "-i", required=True, type=click.Path(exists=True), help="Path to input data file")
+@click.option("--output-file", "-o", required=True, type=click.Path(exists=False), help="Path to output data file")
+@click.pass_context
+@click.version_option()
 
+def run_preprocessor(ctx, config_file, input_file, output_file):
+    # Set up logger
+    logger = get_logger(__name__)
 
-def run_preprocessor():
-
-    print("This is the main function.")
     # Load configuration
-    config = load_config()
-    # print(config)
+    config = Config(config_file)
 
-    fe_conf = get_feature_engineering_config(config)
-    print(config["feature_engineering"])
+    # Load data
+    data = load_data(input_file)
 
-    # clean_data()
+    # Instantiate preprocessor
+    preprocessor = Preprocessor(config)
 
-    # # Load data
-    # data = load_data(conf["data_file"])
-
-    # # Perform data cleaning
-    # clean_data(data, conf["cleaning"])
+    # Perform data cleaning
+    cleaned_data = preprocessor.clean_data(data)
 
     # # Perform data normalization
     # normalize_data(data, conf["normalization"])
@@ -42,8 +48,7 @@ def run_preprocessor():
     # write_data(data, conf["output_file"])
 
     # Log completion message
-    # logger = get_logger(__name__)
-    # logger.info("Data preprocessing complete.")
+    logger.info("Data preprocessing complete.")
 
 
 if __name__ == "__main__":
