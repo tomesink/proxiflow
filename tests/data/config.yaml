@@ -3,9 +3,10 @@ output_format: csv
 
 data_cleaning:
   handle_missing_values:
-    drop: true
-    mean: true
-    mode: false
+    drop: false
+    mean: false
+    mode: true
+
   remove_duplicates: true
 
 data_normalization:
