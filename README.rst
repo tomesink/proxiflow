@@ -10,7 +10,7 @@ To use ProxiFlow, install it via `pip` (from test PyPi):
 
 .. code-block:: bash
 
-    pip install -i https://test.pypi.org/simple/ proxiflow
+    pip install proxiflow
 
 You can then call it from the command line:
 

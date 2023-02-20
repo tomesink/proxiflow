@@ -48,6 +48,9 @@ run:
 publish-test:
 	${MANAGER} publish --repository test-pypi
 
+publish:
+	${MANAGER} publish
+
 check-build:
 	twine check dist/*
 
