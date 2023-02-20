@@ -1,8 +1,8 @@
 import pytest
 import polars as pl
 import numpy as np
-from prepflow.config import Config
-from prepflow.preprocessor import Preprocessor
+from proxiflow.config import Config
+from proxiflow.core import DataFlow
 
 CONFIG_FILE_PATH = "tests/data/config.yaml"
 DATA_FILE_PATH = "tests/data/input.csv"
@@ -15,9 +15,9 @@ def config():
 def data():
     return pl.read_csv(DATA_FILE_PATH)
 
-class TestPreprocessor:
+class TestDataFlow:
     """
-    A test class for the Preprocessor class in the prepflow library.
+    A test class for the DataFlow class in the proxiflow library.
     """
     def test_clean_data_with_empty_dataframe(self, config):
         """
@@ -33,12 +33,12 @@ class TestPreprocessor:
         AssertionError: If the test fails.
         """
         with pytest.raises(ValueError):
-            preprocessor = Preprocessor(config)
-            preprocessor.clean_data(pl.DataFrame())
+            flow = DataFlow(config)
+            flow.clean_data(pl.DataFrame())
 
     def test_remove_duplicates(self, data, config):
         """
-        Test the remove_duplicates method of the Preprocessor class.
+        Test the remove_duplicates method of the DataFlow class.
 
         Parameters:
         data (pl.DataFrame): The DataFrame to use for testing.
@@ -50,13 +50,13 @@ class TestPreprocessor:
         Raises:
         AssertionError: If the test fails.
         """
-        preprocessor = Preprocessor(config)
-        cleaned_data = preprocessor.remove_duplicates(data)
+        flow = DataFlow(config)
+        cleaned_data = flow.remove_duplicates(data)
         assert cleaned_data.shape[0] == data.unique().shape[0]
 
     def test_drop_missing(self, config):
         """
-        Test the drop_missing method of the Preprocessor class.
+        Test the drop_missing method of the DataFlow class.
 
         Parameters:
         config (Config): The Config object to use for testing.
@@ -67,14 +67,14 @@ class TestPreprocessor:
         Raises:
         AssertionError: If the test fails.
         """
-        preprocessor = Preprocessor(config)
+        flow = DataFlow(config)
         df_with_nulls = pl.DataFrame({'a': [None]*10, 'b': [None]*10})
-        cleaned_data = preprocessor.drop_missing(df_with_nulls)
+        cleaned_data = flow.drop_missing(df_with_nulls)
         assert cleaned_data.shape[0] == df_with_nulls.shape[0] - 10
 
     def test_mean_missing(self, config):
         """
-        Test the mean_missing method of the Preprocessor class.
+        Test the mean_missing method of the DataFlow class.
 
         Parameters:
         config (Config): The Config object to use for testing.
@@ -85,12 +85,12 @@ class TestPreprocessor:
         Raises:
         AssertionError: If the test fails.
         """
-        preprocessor = Preprocessor(config)
+        flow = DataFlow(config)
         df_with_nulls= pl.DataFrame({
             "A": [1, 2, 3, None],
             "B": [4.0, 5.0, None, 7.0]
         })
-        cleaned_data = preprocessor.mean_missing(df_with_nulls)
+        cleaned_data = flow.mean_missing(df_with_nulls)
         expected_df= pl.DataFrame({
             "A": [1, 2, 3, 2],
             "B": [4.0, 5.0, 5.333333, 7.0]
@@ -101,7 +101,7 @@ class TestPreprocessor:
 
     def test_mode_missing(self, config):
         """
-        Test the mode_missing method of the Preprocessor class.
+        Test the mode_missing method of the DataFlow class.
 
         Parameters:
         data (pl.DataFrame): The DataFrame to use for testing.
@@ -113,12 +113,12 @@ class TestPreprocessor:
         Raises:
         AssertionError: If the test fails.
         """
-        preprocessor = Preprocessor(config)
+        flow = DataFlow(config)
         df_with_nulls = pl.DataFrame({
             "A": [1, 2, 2, 2, 4, None],
             "B": ["One","One", "Five", "Two", None, "Three"]
         })
-        cleaned_data = preprocessor.mode_missing(df_with_nulls)
+        cleaned_data = flow.mode_missing(df_with_nulls)
         expected_df =  pl.DataFrame({
             "A": [1, 2, 2, 2, 4, 2],
             "B": ["One","One", "Five", "Two", "One", "Three"]

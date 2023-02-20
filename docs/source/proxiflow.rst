@@ -1,5 +1,5 @@
-prepflow package
-================
+proxiflow package
+=================
 
 Subpackages
 -----------
@@ -7,17 +7,17 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   prepflow.config
-   prepflow.preprocessor
-   prepflow.utils
+   proxiflow.config
+   proxiflow.core
+   proxiflow.utils
 
 Submodules
 ----------
 
-prepflow.cmd module
--------------------
+proxiflow.cli module
+--------------------
 
-.. automodule:: prepflow.cmd
+.. automodule:: proxiflow.cli
    :members:
    :undoc-members:
    :show-inheritance:
@@ -25,7 +25,7 @@ prepflow.cmd module
 Module contents
 ---------------
 
-.. automodule:: prepflow
+.. automodule:: proxiflow
    :members:
    :undoc-members:
    :show-inheritance:

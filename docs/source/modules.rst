@@ -1,7 +1,7 @@
-prepflow
-========
+proxiflow
+=========
 
 .. toctree::
    :maxdepth: 4
 
-   prepflow
+   proxiflow

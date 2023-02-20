@@ -1,5 +1,5 @@
 import pytest
-from prepflow.config import Config
+from proxiflow.config import Config
 
 CONFIG_FILE_PATH = "tests/data/config.yaml"
 

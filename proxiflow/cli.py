@@ -3,7 +3,7 @@ import polars as pl
 
 from .config import Config
 from .utils.logger import get_logger
-from .preprocessor import Preprocessor
+from .core import DataFlow
 
 
 def load_data(data_file: str) -> pl.DataFrame:
@@ -76,7 +76,7 @@ def write_data(data: pl.DataFrame, output_file: str) -> None:
 )
 @click.pass_context
 @click.version_option()
-def run_preprocessor(ctx, config_file, input_file, output_file):
+def main(ctx, config_file, input_file, output_file):
     # Set up logger
     logger = get_logger(__name__)
 
@@ -92,11 +92,11 @@ def run_preprocessor(ctx, config_file, input_file, output_file):
         logger.error("Error parsing input file: %s", str(e))
 
     # Instantiate preprocessor
-    preprocessor = Preprocessor(config)
+    flow = DataFlow(config)
 
     # Perform data cleaning
     try:
-        cleaned_data = preprocessor.clean_data(data)
+        cleaned_data = flow.clean_data(data)
     except ValueError as e:
         logger.error("Error cleaning data: %s", str(e))
         return
@@ -116,4 +116,4 @@ def run_preprocessor(ctx, config_file, input_file, output_file):
 
 
 if __name__ == "__main__":
-    run_preprocessor()
+    main()

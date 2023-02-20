@@ -2,9 +2,9 @@ PYTHON = python3
 PIP = pip3
 LINTER = flakeheaven
 FORMATTER = black
-NAME=prepflow
+NAME=proxiflow
 DOC=docs
-VERSION=0.1.2
+MANAGER=poetry
 
 
 # The @ makes sure that the command itself isn't echoed in the terminal
@@ -24,10 +24,10 @@ format:
 	${FORMATTER} ${NAME}
 
 lint:
-	${PYTHON} -m $(LINTER) lint prepflow
+	$(LINTER) lint ${NAME}
 
 test:
-	${PYTHON} -m pytest -v
+	${MANAGER} run pytest -v
 
 doc:
 	# @#${PYTHON} -m pdoc --html --output-dir docs ${NAME}
@@ -40,15 +40,15 @@ install:
 	${PYTHON} -m pip install .
 
 build:
-	${PYTHON} -m build
+	${MANAGER} build
 
 run:
 	@${PYTHON} -m ${NAME} --config-file=tests/data/config.yaml --input-file=tests/data/input.csv --output-file=tests/data/output.csv
 
-deploy_test:
-	${PYTHON} -m twine upload --repository testpypi dist/prepflow-${VERSION}.tar.gz --verbose
+publish-test:
+	${MANAGER} publish --repository test-pypi
 
-check_build:
+check-build:
 	twine check dist/*
 
 clean:

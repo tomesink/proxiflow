@@ -1,13 +1,13 @@
-prepflow.utils package
+proxiflow.core package
 ======================
 
 Submodules
 ----------
 
-prepflow.utils.logger module
-----------------------------
+proxiflow.core.dataflow module
+------------------------------
 
-.. automodule:: prepflow.utils.logger
+.. automodule:: proxiflow.core.dataflow
    :members:
    :undoc-members:
    :show-inheritance:
@@ -15,7 +15,7 @@ prepflow.utils.logger module
 Module contents
 ---------------
 
-.. automodule:: prepflow.utils
+.. automodule:: proxiflow.core
    :members:
    :undoc-members:
    :show-inheritance:

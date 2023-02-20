@@ -10,7 +10,7 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('../..'))
 
-project = 'Prepflow'
+project = 'ProxiFlow'
 copyright = '2023, Martin Tomes'
 author = 'Martin Tomes'
 release = '0.1.0'

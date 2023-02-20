@@ -1,15 +1,15 @@
 import polars as pl
-from prepflow.config import Config
+from proxiflow.config import Config
 
 
-class Preprocessor:
+class DataFlow:
     """
     A class for performing data preprocessing tasks such as cleaning, normalization, and feature engineering.
     """
 
     def __init__(self, config: Config):
         """
-        Initialize a new Preprocessor object with the specified configuration.
+        Initialize a new DataFlow object with the specified configuration.
 
         Parameters:
         config (Config): A Config object containing the cleaning configuration values.
@@ -104,7 +104,6 @@ class Preprocessor:
                 clone_df.replace(col, mean_s)
 
         return clone_df
-
 
     def mode_missing(self, df: pl.DataFrame) -> pl.DataFrame:
         """
