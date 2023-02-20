@@ -1,5 +1,6 @@
 import polars as pl
-from adprep.config import Config
+from prepflow.config import Config
+
 
 class Preprocessor:
     """
@@ -50,14 +51,13 @@ class Preprocessor:
         if missing_values["mean"]:
             cleaned_df = self.mean_missing(cleaned_df)
             return cleaned_df
-        
+
         # Fill missing values with the mode of the column.
         if missing_values["mode"]:
             cleaned_df = self.mode_missing(cleaned_df)
             return cleaned_df
 
         return cleaned_df
-
 
     def remove_duplicates(self, df: pl.DataFrame) -> pl.DataFrame:
         """
@@ -69,8 +69,8 @@ class Preprocessor:
         Returns:
         pl.DataFrame: The DataFrame with duplicates removed.
         """
-        return df.unique(keep='first')
-
+        clone_df = df.clone()
+        return clone_df.unique(keep="first")
 
     def drop_missing(self, df: pl.DataFrame) -> pl.DataFrame:
         """
@@ -82,8 +82,8 @@ class Preprocessor:
         Returns:
         pl.DataFrame: The DataFrame with rows with missing values dropped.
         """
-        return df.drop_nulls()
-
+        clone_df = df.clone()
+        return clone_df.drop_nulls()
 
     def mean_missing(self, df: pl.DataFrame) -> pl.DataFrame:
         """
@@ -95,28 +95,33 @@ class Preprocessor:
         Returns:
         pl.DataFrame: The DataFrame with missing values filled.
         """
-        return df.fill_null(strategy="mean")
+        clone_df = df.clone()
+        for col in clone_df.columns:
+            # Only Integers and Floats supported
+            if clone_df[col].dtype == pl.Int64 or clone_df[col].dtype == pl.Float64:
+                mean = clone_df[col].mean()
+                mean_s = clone_df[col].fill_null(mean)
+                clone_df.replace(col, mean_s)
+
+        return clone_df
 
 
     def mode_missing(self, df: pl.DataFrame) -> pl.DataFrame:
         """
-        Fill missing values with the mode of the column. If the column is of type f64, the mean is used instead.
+        Fill missing values with the mode of the column. Only Int64 and Str data types are supported.
 
         Parameters:
         df (pl.DataFrame): The DataFrame to fill missing values in.
 
         Returns:
-        pl.DataFrame: The DataFrame with missing values filled.
+        pl.DataFrame: The DataFrame with missing values filled with mode or original null (in case of unsupported data type)
         """
-        for col in df.columns:
-            # Mode is not implemented for f64
-            if df[col].dtype == pl.Float64:
-                mean_s = df[col].fill_null(strategy="mean")
-                df.replace(col, mean_s.round(2))
-            else :
-                mode = df[col].mode()
-                mode_s = df[col].fill_null(mode[0])
-                df.replace(col, mode_s)
-        
-        return df
-            
+        clone_df = df.clone()
+        for col in clone_df.columns:
+            # Only Integers and String supported
+            if clone_df[col].dtype == pl.Int64 or clone_df[col].dtype == pl.Utf8:
+                mode = clone_df[col].mode()
+                mode_s = clone_df[col].fill_null(mode[0])
+                clone_df.replace(col, mode_s)
+
+        return clone_df

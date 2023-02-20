@@ -1,5 +1,5 @@
 import pytest
-from adprep.config import Config
+from prepflow.config import Config
 
 CONFIG_FILE_PATH = "tests/data/config.yaml"
 

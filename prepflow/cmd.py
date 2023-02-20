@@ -5,6 +5,7 @@ from .config import Config
 from .utils.logger import get_logger
 from .preprocessor import Preprocessor
 
+
 def load_data(data_file: str) -> pl.DataFrame:
     """
     Load a CSV file and return a polars DataFrame.
@@ -52,9 +53,27 @@ def write_data(data: pl.DataFrame, output_file: str) -> None:
 
 
 @click.group(invoke_without_command=True, no_args_is_help=True)
-@click.option("--config-file", "-c", required=True, type=click.Path(exists=True), help="Path to configuration file")
-@click.option("--input-file", "-i", required=True, type=click.Path(exists=True), help="Path to input data file")
-@click.option("--output-file", "-o", required=True, type=click.Path(exists=False), help="Path to output data file")
+@click.option(
+    "--config-file",
+    "-c",
+    required=True,
+    type=click.Path(exists=True),
+    help="Path to configuration file",
+)
+@click.option(
+    "--input-file",
+    "-i",
+    required=True,
+    type=click.Path(exists=True),
+    help="Path to input data file",
+)
+@click.option(
+    "--output-file",
+    "-o",
+    required=True,
+    type=click.Path(exists=False),
+    help="Path to output data file",
+)
 @click.pass_context
 @click.version_option()
 def run_preprocessor(ctx, config_file, input_file, output_file):

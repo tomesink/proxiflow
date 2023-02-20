@@ -1,7 +1,14 @@
 import yaml
 from typing import Dict
 
+
 class Config:
+    """
+    A class for loading configuration data from a YAML file.
+
+    Parameters:
+    file_path (str): The path to the YAML configuration file.
+    """
     def __init__(self, file_path: str):
         self.file_path = file_path
         self.config = self.load_config(file_path)
