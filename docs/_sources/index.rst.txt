@@ -12,8 +12,8 @@ Welcome to ProxiFlow's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   quickstart
-   modules
+   Get Started <quickstart>
+   Documentation <modules>
 
 
 Indices and tables

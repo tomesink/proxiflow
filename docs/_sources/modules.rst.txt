@@ -1,5 +1,5 @@
-Documentation
-=============
+proxiflow
+=========
 
 .. toctree::
    :maxdepth: 4
