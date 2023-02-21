@@ -3,7 +3,7 @@ PIP = pip3
 LINTER = flakeheaven
 FORMATTER = black
 NAME=proxiflow
-DOC=sphinx-docs
+DOC=sphinx
 MANAGER=poetry
 
 
@@ -32,7 +32,7 @@ test:
 doc:
 	# @#${PYTHON} -m pdoc --html --output-dir docs ${NAME}
 	sphinx-apidoc -f -o ${DOC}/source ${NAME} --ext-autodoc && cd ${DOC} && make html
-	cp -R ${DOC}/build/html/* docs
+	cp -r ${DOC}/build/html docs && touch docs/.nojekyll
 
 html:
 	cd ${DOC} && make html
