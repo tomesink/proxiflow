@@ -6,10 +6,9 @@ class Config:
     """
     A class for loading configuration data from a YAML file.
 
-    Parameters:
-    file_path (str): The path to the YAML configuration file.
+    :param file_path: The path to the YAML configuration file.
+    :type file_path: str
     """
-
     def __init__(self, file_path: str):
         self.file_path = file_path
         self.config = self.load_config(file_path)
@@ -19,15 +18,14 @@ class Config:
         """
         Load a YAML configuration file from the specified file path.
 
-        Parameters:
-        file_path (str): The path to the YAML configuration file.
+        :param file_path: The path to the YAML configuration file.
+        :type file_path: str
 
-        Returns:
-        dict: A dictionary containing the configuration values.
+        :returns: A dictionary containing the configuration values.
+        :rtype: Dict
 
-        Raises:
-        FileNotFoundError: If the specified file path does not exist.
-        ValueError: If the specified file is empty or cannot be parsed as YAML.
+        :raises FileNotFoundError: If the specified file path does not exist.
+        :raises ValueError: If the specified file is empty or cannot be parsed as YAML.
         """
         try:
             with open(file_path, "r") as f:
@@ -45,11 +43,10 @@ class Config:
         """
         Get the data cleaning configuration values from the configuration dictionary.
 
-        Returns:
-        dict: A dictionary containing the data cleaning configuration values.
+        :returns: A dictionary containing the data cleaning configuration values.
+        :rtype: Dict
 
-        Raises:
-        ValueError: If the "data_cleaning" key is not present in the configuration dictionary.
+        :raises ValueError: If the "data_cleaning" key is not present in the configuration dictionary.
         """
         try:
             return self.config["data_cleaning"]
@@ -61,11 +58,10 @@ class Config:
         """
         Get the data normalization configuration values from the configuration dictionary.
 
-        Returns:
-        dict: A dictionary containing the data normalization configuration values.
+        :returns: A dictionary containing the data normalization configuration values.
+        :rtype: Dict
 
-        Raises:
-        ValueError: If the "data_normalization" key is not present in the configuration dictionary.
+        :raises ValueError: If the "data_normalization" key is not present in the configuration dictionary.
         """
         try:
             return self.config["data_normalization"]
@@ -77,11 +73,10 @@ class Config:
         """
         Get the feature engineering configuration values from the configuration dictionary.
 
-        Returns:
-        dict: A dictionary containing the feature engineering configuration values.
+        :returns: A dictionary containing the feature engineering configuration values.
+        :rtype: Dict
 
-        Raises:
-        ValueError: If the "feature_engineering" key is not present in the configuration dictionary.
+        :raises ValueError: If the "feature_engineering" key is not present in the configuration dictionary.
         """
         try:
             return self.config["feature_engineering"]

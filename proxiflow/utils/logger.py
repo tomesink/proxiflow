@@ -4,6 +4,14 @@ import logging
 def get_logger(name, level=logging.INFO):
     """
     Create a logger instance with the specified name and log level.
+
+    :param name: The name of the logger instance.
+    :type name: str
+    :param level: The logging level for the logger instance. Defaults to logging.INFO.
+    :type level: int
+
+    :returns: The logger instance.
+    :rtype: logging.Logger
     """
     logger = logging.getLogger(name)
     logger.setLevel(level)

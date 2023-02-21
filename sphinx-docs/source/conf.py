@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 project = 'ProxiFlow'
 copyright = '2023, Martin Tomes'
 author = 'Martin Tomes'
-release = '0.1.0'
+release = '0.1.2'
 
 
 
@@ -26,6 +26,7 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.viewcode',
     'sphinx.ext.todo',
+    'sphinx.ext.githubpages',
 ]
 
 templates_path = ['_templates']

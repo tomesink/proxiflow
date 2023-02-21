@@ -11,8 +11,8 @@ class DataFlow:
         """
         Initialize a new DataFlow object with the specified configuration.
 
-        Parameters:
-        config (Config): A Config object containing the cleaning configuration values.
+        :param config: A Config object containing the cleaning configuration values.
+        :type config: Config
         """
         self.config = config
 
@@ -20,14 +20,13 @@ class DataFlow:
         """
         Clean a polars DataFrame by removing duplicates and filling in missing values.
 
-        Parameters:
-        df (pl.DataFrame): The DataFrame to clean.
+        :param df: The DataFrame to clean.
+        :type df: polars.DataFrame
 
-        Returns:
-        pl.DataFrame: The cleaned DataFrame.
+        :returns df: The cleaned DataFrame.
+        :rtype: polars.DataFrame
 
-        Raises:
-        ValueError: If the DataFrame is empty.
+        :raises ValueError: If the DataFrame is empty.
         """
         if df.shape[0] == 0:
             raise ValueError("Empty DataFrame, no missing values to fill.")
@@ -63,11 +62,11 @@ class DataFlow:
         """
         Remove duplicate rows from a polars DataFrame.
 
-        Parameters:
-        df (pl.DataFrame): The DataFrame to remove duplicates from.
+        :param df: The DataFrame to remove duplicates from.
+        :type df: polars.DataFrame
 
-        Returns:
-        pl.DataFrame: The DataFrame with duplicates removed.
+        :returns: The DataFrame with duplicates removed.
+        :rtype: polars.DataFrame
         """
         clone_df = df.clone()
         return clone_df.unique(keep="first")
@@ -76,11 +75,11 @@ class DataFlow:
         """
         Drop rows with missing values from a polars DataFrame.
 
-        Parameters:
-        df (pl.DataFrame): The DataFrame to drop rows from.
+        :param df: The DataFrame to drop rows from.
+        :type df: polars.DataFrame
 
-        Returns:
-        pl.DataFrame: The DataFrame with rows with missing values dropped.
+        :returns: The DataFrame with rows with missing values dropped.
+        :rtype: polars.DataFrame
         """
         clone_df = df.clone()
         return clone_df.drop_nulls()
@@ -89,11 +88,11 @@ class DataFlow:
         """
         Fill missing values with the mean of the column.
 
-        Parameters:
-        df (pl.DataFrame): The DataFrame to fill missing values in.
+        :param df: The DataFrame to fill missing values in.
+        :type df: polars.DataFrame
 
-        Returns:
-        pl.DataFrame: The DataFrame with missing values filled.
+        :returns: The DataFrame with missing values filled.
+        :rtype: polars.DataFrame
         """
         clone_df = df.clone()
         for col in clone_df.columns:
@@ -109,11 +108,11 @@ class DataFlow:
         """
         Fill missing values with the mode of the column. Only Int64 and Str data types are supported.
 
-        Parameters:
-        df (pl.DataFrame): The DataFrame to fill missing values in.
+        :param df: The DataFrame to fill missing values in.
+        :type df: polars.DataFrame
 
-        Returns:
-        pl.DataFrame: The DataFrame with missing values filled with mode or original null (in case of unsupported data type)
+        :returns: The DataFrame with missing values filled with mode or original null (in case of unsupported data type)
+        :rtype: polars.DataFrame
         """
         clone_df = df.clone()
         for col in clone_df.columns:
