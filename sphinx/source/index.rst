@@ -12,7 +12,7 @@ Welcome to ProxiFlow's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   Get Started <quickstart>
+   Get started <quickstart>
    Documentation <modules>
 
 
