@@ -1,4 +1,9 @@
 [![image](https://badge.fury.io/py/proxiflow.svg)](https://badge.fury.io/py/proxiflow)
+[![PyPI download month](https://img.shields.io/pypi/dm/proxiflow.svg)](https://pypi.python.org/pypi/proxiflow/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/tomesm/proxiflow/graphs/commit-activity)
+[![PyPI license](https://img.shields.io/pypi/l/proxiflow.svg)](https://pypi.python.org/pypi/proxiflow/)
+![tests](https://github.com/tomesm/proxiflow/actions/workflows/tests.yml/badge.svg?branch=v0.1.3)
+
 
 # ProxiFlow
 
