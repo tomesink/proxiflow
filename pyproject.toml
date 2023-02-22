@@ -62,7 +62,7 @@ extend-ignore = "E203"
 [tool.flakeheaven]
 exclude = ["README.rst", "README.md"]
 format = "colored"
-max_line_length = 90
+max_line_length = 120
 show_source = true
 # whitelist = "../../allowlist.txt"
 
@@ -80,6 +80,6 @@ show_source = true
 # flake8-spellcheck = ["+*"]
 # pep8-naming = ["+*"]
 mccabe = ["+*"]
-pycodestyle = ["+*"]
+pycodestyle = ["+*", "-E501"]
 pylint = ["+*"]
 pyflakes = ["+*"]

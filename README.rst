@@ -1,3 +1,10 @@
+.. image:: https://badge.fury.io/py/proxiflow.svg
+    :target: https://badge.fury.io/py/proxiflow
+
+.. image:: https://github.com/tomesm/proxiflow/workflows/tests/badge.svg 
+    :target: tests
+
+
 ProxiFlow
 =========
 
