@@ -1,8 +1,8 @@
 .. image:: https://badge.fury.io/py/proxiflow.svg
     :target: https://badge.fury.io/py/proxiflow
 
-.. image:: https://github.com/tomesm/proxiflow/actions/workflows/tests/badge.svg?branch=v0.1.3
-    :target: v0.1.3 tests
+.. |v0.1.3 tests| image:: https://github.com/tomesm/proxiflow/actions/workflows/tests/badge.svg?branch=v0.1.3
+    :target:
 
 
 ProxiFlow
