@@ -1,4 +1,4 @@
-name: Test ProxiFlow Package
+name: tests
 
 on: [push, pull_request]
 
