@@ -3,7 +3,7 @@ PIP = pip3
 LINTER = flakeheaven
 FORMATTER = black
 NAME=proxiflow
-DOC=docs
+DOC=sphinx
 MANAGER=poetry
 
 
@@ -30,8 +30,8 @@ test:
 	${MANAGER} run pytest -v
 
 doc:
-	# @#${PYTHON} -m pdoc --html --output-dir docs ${NAME}
-	sphinx-apidoc -f -o ${DOC}/source ${NAME} --ext-autodoc && cd ${DOC} && make html
+	@sphinx-apidoc -f -o ${DOC}/source ${NAME} --ext-autodoc && cd ${DOC} && make html
+	@cp -a ${DOC}/build/html/. docs 
 
 html:
 	cd ${DOC} && make html
@@ -42,7 +42,7 @@ install:
 build:
 	${MANAGER} build
 
-run:
+dev:
 	@${PYTHON} -m ${NAME} --config-file=tests/data/config.yaml --input-file=tests/data/input.csv --output-file=tests/data/output.csv
 
 publish-test:

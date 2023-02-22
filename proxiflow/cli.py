@@ -10,15 +10,14 @@ def load_data(data_file: str) -> pl.DataFrame:
     """
     Load a CSV file and return a polars DataFrame.
 
-    Parameters:
-    data_file (str): The path to the CSV file to load.
+    :param data_file: The path to the CSV file to load.
+    :type data_file: str
 
-    Returns:
-    pl.DataFrame: The DataFrame containing the CSV data.
+    :returns: The DataFrame containing the CSV data.
+    :rtype: polars.DataFrame
 
-    Raises:
-    FileNotFoundError: If the specified file path does not exist.
-    ValueError: If the specified file is empty or cannot be parsed as a CSV file.
+    :raises FileNotFoundError: If the specified file path does not exist.
+    :raises ValueError: If the specified file is empty or cannot be parsed as a CSV file.
     """
     try:
         # Attempt to load the CSV file
@@ -39,12 +38,14 @@ def write_data(data: pl.DataFrame, output_file: str) -> None:
     """
     Writes a given DataFrame to a CSV file.
 
-    Parameters:
-    data (pl.DataFrame): The DataFrame to be written.
-    output_file (str): The file path to save the data.
+    :param data: The DataFrame to be written.
+    :type data: polars.DataFrame
+    :param output_file: The file path to save the data.
+    :type output_file: str
 
-    Raises:
-    Exception: If there is an error while writing the data.
+    :returns: None
+
+    :raises Exception: If there is an error while writing the data.
     """
     try:
         data.write_csv(output_file, sep=",")
