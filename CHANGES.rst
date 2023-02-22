@@ -1,34 +1,35 @@
-Changelog
-=========
+Version 0.1.3 
+-------------
 
-0.1.2 (2023-020-02)
+Unreleased
+
+- Add outliers handling to the data clean module
+- Add unit tests for outliers handling
+- Add basic data normalization features
+- Add unit tests for data normalization
+
+
+Version 0.1.2
+-------------
+
+Released 2023-02-22
+
+- Added bug tracker and documentation URLs for the project.
+- All generated documentation is now available in the docs folder. This folder serves also as a root for github pages.
+
+
+Version 0.1.1
 -------------------
 
-Added
-~~~~~
-- TODO:
-  
-Changed
-~~~~~~~
-- TODO:
+Released 2023-02-20
 
-
-0.1.1 (2023-020-02)
--------------------
-
-Changed
-~~~~~~~
 - Updated README.rst with correct installation instructions
   
 
-0.1.0 (2023-020-02)
--------------------
+Version 0.1.0
+-------------
 
-Added
-~~~~~
+Released 2023-02-20
+
 - Initial release with config implementation
 - Initial release with basic data clean implementation and unit tests
-
-Changed
-~~~~~~~
-- None
