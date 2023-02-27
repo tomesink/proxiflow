@@ -9,6 +9,7 @@ class Config:
     :param file_path: The path to the YAML configuration file.
     :type file_path: str
     """
+
     def __init__(self, file_path: str):
         self.file_path = file_path
         self.config = self.load_config(file_path)
