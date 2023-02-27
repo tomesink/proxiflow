@@ -73,21 +73,21 @@
 <span class="kn">from</span> <span class="nn">proxiflow.config</span> <span class="kn">import</span> <span class="n">Config</span>
 
 
-<div class="viewcode-block" id="DataFlow"><a class="viewcode-back" href="../../../proxiflow.core.html#proxiflow.core.dataflow.DataFlow">[docs]</a><span class="k">class</span> <span class="nc">DataFlow</span><span class="p">:</span>
+<div class="viewcode-block" id="Cleaner"><a class="viewcode-back" href="../../../proxiflow.core.html#proxiflow.core.dataflow.Cleaner">[docs]</a><span class="k">class</span> <span class="nc">Cleaner</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class for performing data preprocessing tasks such as cleaning, normalization, and feature engineering.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initialize a new DataFlow object with the specified configuration.</span>
+<span class="sd">        Initialize a new Cleaner object with the specified configuration.</span>
 
 <span class="sd">        :param config: A Config object containing the cleaning configuration values.</span>
 <span class="sd">        :type config: Config</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
 
-<div class="viewcode-block" id="DataFlow.clean_data"><a class="viewcode-back" href="../../../proxiflow.core.html#proxiflow.core.dataflow.DataFlow.clean_data">[docs]</a>    <span class="k">def</span> <span class="nf">clean_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="Cleaner.clean_data"><a class="viewcode-back" href="../../../proxiflow.core.html#proxiflow.core.dataflow.Cleaner.clean_data">[docs]</a>    <span class="k">def</span> <span class="nf">clean_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Clean a polars DataFrame by removing duplicates and filling in missing values.</span>
 
@@ -129,7 +129,7 @@
 
         <span class="k">return</span> <span class="n">cleaned_df</span></div>
 
-<div class="viewcode-block" id="DataFlow.remove_duplicates"><a class="viewcode-back" href="../../../proxiflow.core.html#proxiflow.core.dataflow.DataFlow.remove_duplicates">[docs]</a>    <span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="Cleaner.remove_duplicates"><a class="viewcode-back" href="../../../proxiflow.core.html#proxiflow.core.dataflow.Cleaner.remove_duplicates">[docs]</a>    <span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Remove duplicate rows from a polars DataFrame.</span>
 
@@ -142,7 +142,7 @@
         <span class="n">clone_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">clone_df</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s2">&quot;first&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataFlow.drop_missing"><a class="viewcode-back" href="../../../proxiflow.core.html#proxiflow.core.dataflow.DataFlow.drop_missing">[docs]</a>    <span class="k">def</span> <span class="nf">drop_missing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="Cleaner.drop_missing"><a class="viewcode-back" href="../../../proxiflow.core.html#proxiflow.core.dataflow.Cleaner.drop_missing">[docs]</a>    <span class="k">def</span> <span class="nf">drop_missing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Drop rows with missing values from a polars DataFrame.</span>
 
@@ -155,7 +155,7 @@
         <span class="n">clone_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">clone_df</span><span class="o">.</span><span class="n">drop_nulls</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="DataFlow.mean_missing"><a class="viewcode-back" href="../../../proxiflow.core.html#proxiflow.core.dataflow.DataFlow.mean_missing">[docs]</a>    <span class="k">def</span> <span class="nf">mean_missing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="Cleaner.mean_missing"><a class="viewcode-back" href="../../../proxiflow.core.html#proxiflow.core.dataflow.Cleaner.mean_missing">[docs]</a>    <span class="k">def</span> <span class="nf">mean_missing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Fill missing values with the mean of the column.</span>
 
@@ -175,7 +175,7 @@
 
         <span class="k">return</span> <span class="n">clone_df</span></div>
 
-<div class="viewcode-block" id="DataFlow.mode_missing"><a class="viewcode-back" href="../../../proxiflow.core.html#proxiflow.core.dataflow.DataFlow.mode_missing">[docs]</a>    <span class="k">def</span> <span class="nf">mode_missing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="Cleaner.mode_missing"><a class="viewcode-back" href="../../../proxiflow.core.html#proxiflow.core.dataflow.Cleaner.mode_missing">[docs]</a>    <span class="k">def</span> <span class="nf">mode_missing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Fill missing values with the mode of the column. Only Int64 and Str data types are supported.</span>
 

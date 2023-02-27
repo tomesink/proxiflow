@@ -95,13 +95,13 @@
 <section id="module-proxiflow.core.dataflow">
 <span id="proxiflow-core-dataflow-module"></span><h2>proxiflow.core.dataflow module<a class="headerlink" href="#module-proxiflow.core.dataflow" title="Permalink to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="proxiflow.core.dataflow.DataFlow">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proxiflow.core.dataflow.</span></span><span class="sig-name descname"><span class="pre">DataFlow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="proxiflow.config.html#proxiflow.config.config.Config" title="proxiflow.config.config.Config"><span class="pre">Config</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#DataFlow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.dataflow.DataFlow" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="proxiflow.core.dataflow.Cleaner">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proxiflow.core.dataflow.</span></span><span class="sig-name descname"><span class="pre">Cleaner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="proxiflow.config.html#proxiflow.config.config.Config" title="proxiflow.config.config.Config"><span class="pre">Config</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#Cleaner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.dataflow.Cleaner" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A class for performing data preprocessing tasks such as cleaning, normalization, and feature engineering.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="proxiflow.core.dataflow.DataFlow.clean_data">
-<span class="sig-name descname"><span class="pre">clean_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#DataFlow.clean_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.dataflow.DataFlow.clean_data" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="proxiflow.core.dataflow.Cleaner.clean_data">
+<span class="sig-name descname"><span class="pre">clean_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#Cleaner.clean_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.dataflow.Cleaner.clean_data" title="Permalink to this definition"></a></dt>
 <dd><p>Clean a polars DataFrame by removing duplicates and filling in missing values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -120,8 +120,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="proxiflow.core.dataflow.DataFlow.drop_missing">
-<span class="sig-name descname"><span class="pre">drop_missing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#DataFlow.drop_missing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.dataflow.DataFlow.drop_missing" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="proxiflow.core.dataflow.Cleaner.drop_missing">
+<span class="sig-name descname"><span class="pre">drop_missing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#Cleaner.drop_missing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.dataflow.Cleaner.drop_missing" title="Permalink to this definition"></a></dt>
 <dd><p>Drop rows with missing values from a polars DataFrame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -137,8 +137,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="proxiflow.core.dataflow.DataFlow.mean_missing">
-<span class="sig-name descname"><span class="pre">mean_missing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#DataFlow.mean_missing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.dataflow.DataFlow.mean_missing" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="proxiflow.core.dataflow.Cleaner.mean_missing">
+<span class="sig-name descname"><span class="pre">mean_missing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#Cleaner.mean_missing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.dataflow.Cleaner.mean_missing" title="Permalink to this definition"></a></dt>
 <dd><p>Fill missing values with the mean of the column.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -154,8 +154,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="proxiflow.core.dataflow.DataFlow.mode_missing">
-<span class="sig-name descname"><span class="pre">mode_missing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#DataFlow.mode_missing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.dataflow.DataFlow.mode_missing" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="proxiflow.core.dataflow.Cleaner.mode_missing">
+<span class="sig-name descname"><span class="pre">mode_missing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#Cleaner.mode_missing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.dataflow.Cleaner.mode_missing" title="Permalink to this definition"></a></dt>
 <dd><p>Fill missing values with the mode of the column. Only Int64 and Str data types are supported.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -171,8 +171,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="proxiflow.core.dataflow.DataFlow.remove_duplicates">
-<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#DataFlow.remove_duplicates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.dataflow.DataFlow.remove_duplicates" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="proxiflow.core.dataflow.Cleaner.remove_duplicates">
+<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#Cleaner.remove_duplicates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.dataflow.Cleaner.remove_duplicates" title="Permalink to this definition"></a></dt>
 <dd><p>Remove duplicate rows from a polars DataFrame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -193,13 +193,13 @@
 <section id="module-proxiflow.core">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-proxiflow.core" title="Permalink to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="proxiflow.core.DataFlow">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proxiflow.core.</span></span><span class="sig-name descname"><span class="pre">DataFlow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="proxiflow.config.html#proxiflow.config.config.Config" title="proxiflow.config.config.Config"><span class="pre">Config</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#DataFlow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.DataFlow" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="proxiflow.core.Cleaner">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">proxiflow.core.</span></span><span class="sig-name descname"><span class="pre">Cleaner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="proxiflow.config.html#proxiflow.config.config.Config" title="proxiflow.config.config.Config"><span class="pre">Config</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#Cleaner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.Cleaner" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A class for performing data preprocessing tasks such as cleaning, normalization, and feature engineering.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="proxiflow.core.DataFlow.clean_data">
-<span class="sig-name descname"><span class="pre">clean_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#DataFlow.clean_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.DataFlow.clean_data" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="proxiflow.core.Cleaner.clean_data">
+<span class="sig-name descname"><span class="pre">clean_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#Cleaner.clean_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.Cleaner.clean_data" title="Permalink to this definition"></a></dt>
 <dd><p>Clean a polars DataFrame by removing duplicates and filling in missing values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -218,8 +218,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="proxiflow.core.DataFlow.drop_missing">
-<span class="sig-name descname"><span class="pre">drop_missing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#DataFlow.drop_missing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.DataFlow.drop_missing" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="proxiflow.core.Cleaner.drop_missing">
+<span class="sig-name descname"><span class="pre">drop_missing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#Cleaner.drop_missing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.Cleaner.drop_missing" title="Permalink to this definition"></a></dt>
 <dd><p>Drop rows with missing values from a polars DataFrame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -235,8 +235,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="proxiflow.core.DataFlow.mean_missing">
-<span class="sig-name descname"><span class="pre">mean_missing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#DataFlow.mean_missing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.DataFlow.mean_missing" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="proxiflow.core.Cleaner.mean_missing">
+<span class="sig-name descname"><span class="pre">mean_missing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#Cleaner.mean_missing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.Cleaner.mean_missing" title="Permalink to this definition"></a></dt>
 <dd><p>Fill missing values with the mean of the column.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -252,8 +252,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="proxiflow.core.DataFlow.mode_missing">
-<span class="sig-name descname"><span class="pre">mode_missing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#DataFlow.mode_missing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.DataFlow.mode_missing" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="proxiflow.core.Cleaner.mode_missing">
+<span class="sig-name descname"><span class="pre">mode_missing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#Cleaner.mode_missing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.Cleaner.mode_missing" title="Permalink to this definition"></a></dt>
 <dd><p>Fill missing values with the mode of the column. Only Int64 and Str data types are supported.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -269,8 +269,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="proxiflow.core.DataFlow.remove_duplicates">
-<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#DataFlow.remove_duplicates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.DataFlow.remove_duplicates" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="proxiflow.core.Cleaner.remove_duplicates">
+<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/proxiflow/core/dataflow.html#Cleaner.remove_duplicates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#proxiflow.core.Cleaner.remove_duplicates" title="Permalink to this definition"></a></dt>
 <dd><p>Remove duplicate rows from a polars DataFrame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

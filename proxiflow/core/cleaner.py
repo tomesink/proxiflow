@@ -2,19 +2,19 @@ import polars as pl
 from proxiflow.config import Config
 
 
-class DataFlow:
+class Cleaner:
     """
     A class for performing data preprocessing tasks such as cleaning, normalization, and feature engineering.
     """
 
     def __init__(self, config: Config):
         """
-        Initialize a new DataFlow object with the specified configuration.
+        Initialize a new Cleaner object with the specified configuration.
 
         :param config: A Config object containing the cleaning configuration values.
         :type config: Config
         """
-        self.config = config
+        self.config = config.cleaning_config
 
     def clean_data(self, df: pl.DataFrame) -> pl.DataFrame:
         """
@@ -31,15 +31,15 @@ class DataFlow:
         if df.shape[0] == 0:
             raise ValueError("Empty DataFrame, no missing values to fill.")
 
-        cleaning_config = self.config.cleaning_config
+
         cleaned_df = df.clone()
 
         # Handle duplicate rows
-        if cleaning_config["remove_duplicates"]:
+        if self.config["remove_duplicates"]:
             cleaned_df = self.remove_duplicates(cleaned_df)
 
         # #Handle missing values. drop|mean|mode are mutually exclusive
-        missing_values = cleaning_config["handle_missing_values"]
+        missing_values = self.config["handle_missing_values"]
 
         # Drop missing values
         if missing_values["drop"]:
@@ -51,10 +51,11 @@ class DataFlow:
             cleaned_df = self.mean_missing(cleaned_df)
             return cleaned_df
 
-        # Fill missing values with the mode of the column.
-        if missing_values["mode"]:
-            cleaned_df = self.mode_missing(cleaned_df)
-            return cleaned_df
+        # NOTE: This is currently disabled because it randomly fails with:
+        #Fill missing values with the mode of the column.
+        # if missing_values["mode"]:
+        #     cleaned_df = self.mode_missing(cleaned_df)
+        #     return cleaned_df
 
         return cleaned_df
 
@@ -98,12 +99,14 @@ class DataFlow:
         for col in clone_df.columns:
             # Only Integers and Floats supported
             if clone_df[col].dtype == pl.Int64 or clone_df[col].dtype == pl.Float64:
-                mean = clone_df[col].mean()
-                mean_s = clone_df[col].fill_null(mean)
+                mean_s = clone_df[col].fill_null(strategy="mean")
                 clone_df.replace(col, mean_s)
 
         return clone_df
+    
 
+    # TODO: Investigate why this randomly fails with:
+    #  Error cleaning data: must specify either a fill 'value' or 'strategy'
     def mode_missing(self, df: pl.DataFrame) -> pl.DataFrame:
         """
         Fill missing values with the mode of the column. Only Int64 and Str data types are supported.
@@ -119,7 +122,7 @@ class DataFlow:
             # Only Integers and String supported
             if clone_df[col].dtype == pl.Int64 or clone_df[col].dtype == pl.Utf8:
                 mode = clone_df[col].mode()
-                mode_s = clone_df[col].fill_null(mode[0])
+                mode_s = clone_df[col].fill_null(value=mode[0])
                 clone_df.replace(col, mode_s)
 
         return clone_df

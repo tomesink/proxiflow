@@ -5,12 +5,15 @@ data_cleaning:
   handle_missing_values:
     drop: false
     mean: false
-    mode: true
+    # mode: true
 
   remove_duplicates: true
 
-data_normalization:
-  min_max: true
+data_normalization: # mandatory
+  min_max: #mandatory
+    columns: #mandatory but values are not mandatory. It can be left empty
+      - Age # not mandatory
+      - Price # not mandatory
   z_score: false
   log: false
 

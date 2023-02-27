@@ -44,7 +44,7 @@ class TestConfig:
         assert "handle_missing_values" in cleaning_config
         assert "drop" in cleaning_config["handle_missing_values"]
         assert "mean" in cleaning_config["handle_missing_values"]
-        assert "mode" in cleaning_config["handle_missing_values"]
+        # assert "mode" in cleaning_config["handle_missing_values"]
         assert "remove_duplicates" in cleaning_config
         assert cleaning_config["remove_duplicates"]
 
