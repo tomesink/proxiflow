@@ -16,7 +16,7 @@ Read the full documentation [here](http://proxiflow.readthedocs.io/).
 
 ## Usage
 
-To use ProxiFlow, install it via [pip]{.title-ref} (from test PyPi):
+To use ProxiFlow, install it via pip:
 
 ``` bash
 pip install proxiflow
