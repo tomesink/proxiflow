@@ -14,6 +14,7 @@ Released 2023-03-01
 -   Add unit tests for outliers handling
 -   Add basic data normalization features
 -   Add unit tests for data normalization
+-   Moved documentation into readthedocs hosting
 
 # Version 0.1.2
 

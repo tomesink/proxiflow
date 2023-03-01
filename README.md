@@ -1,4 +1,5 @@
 [![image](https://badge.fury.io/py/proxiflow.svg)](https://badge.fury.io/py/proxiflow)
+[![Documentation Status](https://readthedocs.org/projects/proxiflow/badge/?version=latest)](https://proxiflow.readthedocs.io/en/latest/?badge=latest)
 [![PyPI download month](https://img.shields.io/pypi/dm/proxiflow.svg)](https://pypi.python.org/pypi/proxiflow/)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/tomesm/proxiflow/graphs/commit-activity)
 [![PyPI license](https://img.shields.io/pypi/l/proxiflow.svg)](https://pypi.python.org/pypi/proxiflow/)
@@ -9,6 +10,9 @@
 
 ProxiFlow is a data preparation tool for machine learning that performs
 data cleaning, normalization, and feature engineering.
+
+## Documentation
+Read the full documentation [here](http://proxiflow.readthedocs.io/).
 
 ## Usage
 
