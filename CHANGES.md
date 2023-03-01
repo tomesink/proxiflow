@@ -1,10 +1,17 @@
-# Version 0.1.5
+# Version 0.1.6
 
 Unreleased
 
 -   Add basic feature engineering features
 -   Add unit tests for feature engineering features
 -   Refactor data cleaning so it cleans data based on columns
+
+# Version 0.1.5
+
+Released 2023-03-01
+
+-   Hotfix pypi badge and quickstart documentation.
+
 
 # Version 0.1.4
 
