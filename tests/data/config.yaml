@@ -7,15 +7,19 @@ data_cleaning:
     mean: false
     # mode: true
 
+  handle_outliers: true
   remove_duplicates: true
 
 data_normalization: # mandatory
-  min_max: #mandatory
-    columns: #mandatory but values are not mandatory. It can be left empty
-      - Age # not mandatory
-      - Price # not mandatory
-  z_score: false
-  log: false
+  min_max: #mandatory but values are not mandatory. It can be left empty
+    # Specify columns:
+    # - Age # not mandatory
+    # - Floors
+
+  z_score:
+    # - Price 
+  log:
+    # - Floors
 
 feature_engineering:
   one_hot_encoding:

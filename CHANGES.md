@@ -1,6 +1,14 @@
-# Version 0.1.3
+# Version 0.1.4
 
 Unreleased
+
+-   Add basic feature engineering features
+-   Add unit tests for feature engineering features
+-   Refactor data cleaning so it cleans data based on columns
+
+# Version 0.1.3
+
+Released 2023-03-01
 
 -   Add outliers handling to the data clean module
 -   Add unit tests for outliers handling

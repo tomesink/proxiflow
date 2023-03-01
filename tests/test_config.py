@@ -64,9 +64,6 @@ class TestConfig:
         assert "min_max" in normalization_config
         assert "z_score" in normalization_config
         assert "log" in normalization_config
-        assert normalization_config["min_max"]
-        assert not normalization_config["z_score"]
-        assert not normalization_config["log"]
 
 
     def test_feature_engineering_config(self, config):

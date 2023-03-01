@@ -4,10 +4,18 @@ proxiflow.core package
 Submodules
 ----------
 
-proxiflow.core.dataflow module
-------------------------------
+proxiflow.core.cleaner module
+-----------------------------
 
-.. automodule:: proxiflow.core.dataflow
+.. automodule:: proxiflow.core.cleaner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+proxiflow.core.normalizer module
+--------------------------------
+
+.. automodule:: proxiflow.core.normalizer
    :members:
    :undoc-members:
    :show-inheritance:
