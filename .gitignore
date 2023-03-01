@@ -1,8 +1,17 @@
 # OSX
 .DS_Store
 
+# Intellij
+.idea/
+
 # vscode
 .vscode/
+
+# pytype
+.pytype/
+
+# ruff
+.ruff_cache/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

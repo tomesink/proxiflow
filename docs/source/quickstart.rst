@@ -44,7 +44,7 @@ ProxiFlow can also be used as a Python library. Here's an example:
 
     import polars as pl
     from proxiflow.config import Config
-    from proxiflow.core import DataFlow
+    from proxiflow.core import Cleaner
 
     # Load the data
     df = pl.read_csv("mydata.csv")
@@ -53,7 +53,7 @@ ProxiFlow can also be used as a Python library. Here's an example:
     config = Config("myconfig.yaml")
 
     # Preprocess the data
-    dfl = DataFlow(config)
+    dfl = Cleaner(config)
     cleaned_df = dfl.clean_data(df)
 
     # Write the output data

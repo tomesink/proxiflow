@@ -1,6 +1,6 @@
 PYTHON = python3
 PIP = pip3
-LINTER = flakeheaven
+LINTER = ruff
 FORMATTER = black
 NAME=proxiflow
 DOC=sphinx
@@ -24,7 +24,7 @@ format:
 	${FORMATTER} ${NAME}
 
 lint:
-	$(LINTER) lint ${NAME}
+	$(LINTER) check ${NAME}
 
 test:
 	${MANAGER} run pytest -v

@@ -3,10 +3,10 @@ import polars as pl
 
 from .config import Config
 from .utils.logger import get_logger
-from .core import DataFlow
+from .core import Cleaner, Normalizer
 
 
-def load_data(data_file: str) -> pl.DataFrame:
+def load_data(data_file: str, input_file_format: str) -> pl.DataFrame:
     """
     Load a CSV file and return a polars DataFrame.
 
@@ -20,11 +20,12 @@ def load_data(data_file: str) -> pl.DataFrame:
     :raises ValueError: If the specified file is empty or cannot be parsed as a CSV file.
     """
     try:
-        # Attempt to load the CSV file
-        df = pl.read_csv(data_file)
-        if df.shape[0] == 0:
-            raise ValueError("Data file is empty")
-        return df
+        if input_file_format == "csv":
+            # Attempt to load the CSV file
+            df = pl.read_csv(data_file)
+            if df.shape[0] == 0:
+                raise ValueError("Data file is empty")
+            return df
     except FileNotFoundError:
         # If the file is not found, raise a FileNotFoundError
         raise FileNotFoundError("Data file not found")
@@ -34,7 +35,7 @@ def load_data(data_file: str) -> pl.DataFrame:
 
 
 # Data writer
-def write_data(data: pl.DataFrame, output_file: str) -> None:
+def write_data(data: pl.DataFrame, output_file: str, output_file_format: str) -> None:
     """
     Writes a given DataFrame to a CSV file.
 
@@ -48,7 +49,8 @@ def write_data(data: pl.DataFrame, output_file: str) -> None:
     :raises Exception: If there is an error while writing the data.
     """
     try:
-        data.write_csv(output_file, sep=",")
+        if output_file_format == "csv":
+            data.write_csv(output_file, sep=",")
     except Exception as e:
         raise Exception(f"Error writing data to {output_file}: {str(e)}")
 
@@ -86,29 +88,33 @@ def main(ctx, config_file, input_file, output_file):
 
     # Load data
     try:
-        data = load_data(input_file)
+        data = load_data(input_file, input_file_format=config.input_format)
     except FileNotFoundError as e:
         logger.error("Input file not found: %s", str(e))
     except ValueError as e:
         logger.error("Error parsing input file: %s", str(e))
 
     # Instantiate preprocessor
-    flow = DataFlow(config)
+    cleaner = Cleaner(config)
 
     # Perform data cleaning
     try:
-        cleaned_data = flow.clean_data(data)
+        cleaned_data = cleaner.clean_data(data)
     except ValueError as e:
         logger.error("Error cleaning data: %s", str(e))
         return
 
     # TODO: Add data normalization and feature engineering
     # # Perform data normalization
+    normalizer = Normalizer(config)
+    print(config.normalization_config)
+    normalized_data = normalizer.normalize(cleaned_data)
+    
 
     # # Perform feature engineering
 
     try:
-        write_data(cleaned_data, output_file)
+        write_data(normalized_data, output_file, output_file_format=config.output_format)
     except Exception as e:
         logger.error(f"Error writing data to file {output_file}: {str(e)}")
 
