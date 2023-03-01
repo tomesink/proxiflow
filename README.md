@@ -32,8 +32,14 @@ data_cleaning:
   handle_missing_values:
     drop: True
 
-data_normalization:
-  ...
+data_normalization: # mandatory
+  min_max: #mandatory but values are not mandatory. It can be left empty
+    # Specify columns:
+    - Age # not mandatory
+  z_score:
+    - Price 
+  log:
+    - Floors
 
 feature_engineering:
   ...

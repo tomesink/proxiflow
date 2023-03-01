@@ -13,13 +13,11 @@ data_cleaning:
 data_normalization: # mandatory
   min_max: #mandatory but values are not mandatory. It can be left empty
     # Specify columns:
-    # - Age # not mandatory
-    # - Floors
-
+    - Age # not mandatory
   z_score:
-    # - Price 
+    - Price 
   log:
-    # - Floors
+    - Floors
 
 feature_engineering:
   one_hot_encoding:
