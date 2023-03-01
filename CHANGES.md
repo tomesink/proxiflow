@@ -1,10 +1,16 @@
-# Version 0.1.4
+# Version 0.1.5
 
 Unreleased
 
 -   Add basic feature engineering features
 -   Add unit tests for feature engineering features
 -   Refactor data cleaning so it cleans data based on columns
+
+# Version 0.1.4
+
+Released 2023-03-01
+
+-   Hotfix of the README pip installation process.
 
 # Version 0.1.3
 
