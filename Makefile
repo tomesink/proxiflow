@@ -3,7 +3,7 @@ PIP = pip3
 LINTER = ruff
 FORMATTER = black
 NAME=proxiflow
-DOC=sphinx
+DOC=docs
 MANAGER=poetry
 
 

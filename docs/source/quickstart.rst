@@ -69,7 +69,6 @@ TODO
 ----
 
 - [x] Data cleaning
-- [ ] Data normalization
+- [x] Data normalization
 - [ ] Feature engineering
 
-Note: only data cleaning is currently implemented; data normalization and feature engineering are TODO features.
