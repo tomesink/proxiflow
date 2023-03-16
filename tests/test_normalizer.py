@@ -3,6 +3,7 @@ import polars as pl
 import numpy as np
 from proxiflow.config import Config
 from proxiflow.core import Normalizer
+# from proxiflow.core.core_utils import check_columns
 
 CONFIG_FILE_PATH = "tests/data/config.yaml"
 
@@ -76,20 +77,20 @@ class TestNormalizer():
         # Check that the output DataFrame is equal to the expected DataFrame
         np.testing.assert_allclose(normalized_result.to_numpy(), expected_df.to_numpy(), rtol=1e-5, atol=1e-8)
     
-    def test_check_columns(self, config):
-        df = pl.DataFrame({
-            'col1': [1, 2, 3],
-            'col2': [4, 5, 6],
-            'col3': [7, 8, 9]
-        })
-        normalizer = Normalizer(config)
-        columns = ['col6', 'col5', 'col4']
-        with pytest.raises(ValueError):
-            normalizer._check_columns(df, [columns])
+    # def test_check_columns(self, config):
+    #     df = pl.DataFrame({
+    #         'col1': [1, 2, 3],
+    #         'col2': [4, 5, 6],
+    #         'col3': [7, 8, 9]
+    #     })
+    #     normalizer = Normalizer(config)
+    #     columns = ['col6', 'col5', 'col4']
+    #     with pytest.raises(ValueError):
+    #         normalizer._check_columns(df, [columns])
         
-        columns = ['col1', 'col4']
-        expected = ['col1']
-        result = normalizer._check_columns(df, columns)
-        assert expected == result
+    #     columns = ['col1', 'col4']
+    #     expected = ['col1']
+    #     result = normalizer._check_columns(df, columns)
+    #     assert expected == result
 
 

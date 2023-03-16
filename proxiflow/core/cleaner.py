@@ -1,5 +1,6 @@
 import polars as pl
 from proxiflow.config import Config
+from proxiflow.utils import generate_trace
 
 
 class Cleaner:
@@ -31,35 +32,49 @@ class Cleaner:
         if df.shape[0] == 0:
             raise ValueError("Empty DataFrame, no missing values to fill.")
 
-
         cleaned_df = df.clone()
-
         # #Handle missing values. drop|mean|mode are mutually exclusive
         missing_values = self.config["handle_missing_values"]
 
         # Drop missing values
         if missing_values["drop"]:
-            cleaned_df = self._drop_missing(cleaned_df)
+            try:
+                cleaned_df = self._drop_missing(cleaned_df)
+            except Exception as e:
+                trace = generate_trace(e, self._drop_missing)
+                raise Exception(f"Trying to drop missing values: {trace}")
             return cleaned_df
 
         # Fill missing values with the mean of the column
         if missing_values["mean"]:
-            cleaned_df = self._mean_missing(cleaned_df)
+            try:
+                cleaned_df = self._mean_missing(cleaned_df)
+            except Exception as e:
+                trace = generate_trace(e, self._mean_missing)
+                raise Exception(f"Trying to fill missing values with the mean: {trace}")
             return cleaned_df
 
         # NOTE: This is currently disabled because it randomly fails with:
-        #Fill missing values with the mode of the column.
+        # Fill missing values with the mode of the column.
         # if missing_values["mode"]:
         #     cleaned_df = self.mode_missing(cleaned_df)
         #     return cleaned_df
 
         # Fill outliers with the median of the column
         if self.config["handle_outliers"]:
-            cleaned_df = self._handle_outliers(cleaned_df)
-        
+            try:
+                cleaned_df = self._handle_outliers(cleaned_df)
+            except Exception as e:
+                trace = generate_trace(e, self._handle_outliers)
+                raise Exception(f"Trying to fill outliers with the median: {trace}")
+
         # Handle duplicate rows
         if self.config["remove_duplicates"]:
-            cleaned_df = self._remove_duplicates(cleaned_df)
+            try:
+                cleaned_df = self._remove_duplicates(cleaned_df)
+            except Exception as e:
+                trace = generate_trace(e, self._remove_duplicates)
+                raise Exception(f"Trying to remove duplicate rows: {trace}")
 
         return cleaned_df
 
@@ -107,7 +122,6 @@ class Cleaner:
                 clone_df.replace(col, mean_s)
 
         return clone_df
-    
 
     # TODO: Investigate why this randomly fails with:
     #  Error cleaning data: must specify either a fill 'value' or 'strategy'
@@ -146,7 +160,6 @@ class Cleaner:
 
         for col in clone_df.columns:
             if clone_df[col].dtype == pl.Float64:
-                print("Handling outliers for column: " + col)
                 # Get the first and third quartiles and the IQR
                 q1 = clone_df[col].quantile(0.25)
                 q3 = clone_df[col].quantile(0.75)
@@ -154,14 +167,11 @@ class Cleaner:
                 # Identify the lower and upper bounds for outliers
                 lower_bound = q1 - 1.5 * iqr
                 upper_bound = q3 + 1.5 * iqr
-                print("lower bound: " + str(lower_bound))
-                print("upper bound: " + str(upper_bound))
-                
                 # Replace outliers with the median value of the series
                 median = clone_df[col].median()
-                print("median: " + str(median))
-                serie = clone_df[col].apply(lambda x: median if x < lower_bound or x > upper_bound else x)
+                serie = clone_df[col].apply(
+                    lambda x: median if x < lower_bound or x > upper_bound else x
+                )
                 clone_df.replace(col, serie)
 
-        # print(clone_df)
         return clone_df

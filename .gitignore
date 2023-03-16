@@ -1,3 +1,6 @@
+# Project specific
+tests/data/output.csv
+
 # OSX
 .DS_Store
 

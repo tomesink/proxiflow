@@ -81,5 +81,3 @@ cleaned_df.write_csv("cleaned_data.csv")
 -   \[x\] Data normalization
 -   \[ \] Feature engineering
 
-Note: only data cleaning is currently implemented; data normalization
-and feature engineering are TODO features.

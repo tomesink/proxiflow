@@ -2,6 +2,7 @@ input_format: csv
 output_format: csv
 
 data_cleaning:
+  # NOTE: Not handling missing values can cause errors during data normalization
   handle_missing_values:
     drop: false
     mean: false
