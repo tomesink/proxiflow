@@ -3,7 +3,7 @@ import polars as pl
 
 from .config import Config
 from .utils import *
-from .core import Cleaner, Normalizer
+from .core import Cleaner, Normalizer, Engineer
 
 
 @click.group(invoke_without_command=True, no_args_is_help=True)
@@ -63,11 +63,15 @@ def main(ctx, config_file, input_file, output_file):
         return
 
     # Perform feature engineering
+    engineer = Engineer(config)
+    try:
+        engineered_data = engineer.execute(normalized_data)
+    except Exception as e:
+        logger.error("Engineering data: %s", str(e))
+        return
 
     try:
-        write_data(
-            normalized_data, output_file, output_file_format=config.output_format
-        )
+        write_data(engineered_data, output_file, output_file_format=config.output_format)
     except Exception as e:
         logger.error(f"Error writing data to file {output_file}: {str(e)}")
 

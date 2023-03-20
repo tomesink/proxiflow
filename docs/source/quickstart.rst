@@ -22,21 +22,36 @@ Here's an example of a YAML configuration file:
 
 .. code-block:: yaml
 
-    data_cleaning:
-      remove_duplicates: True
+    input_format: csv
+    output_format: csv
+
+    data_cleaning: #mandatory
+      # NOTE: Not handling missing values can cause errors during data normalization
       handle_missing_values:
-        drop: True
+        drop: false
+        mean: true # Only Int and Float columns are handled 
+        # mode: true # Turned off for now. 
+
+      handle_outliers: true # Only Float columns are handled
+      remove_duplicates: true
 
     data_normalization: # mandatory
       min_max: #mandatory but values are not mandatory. It can be left empty
         # Specify columns:
         - Age # not mandatory
-      z_score:
+      z_score: 
         - Price 
       log:
         - Floors
 
     feature_engineering:
+      one_hot_encoding: # mandatory
+        - Bedrooms      # not mandatory
+
+      feature_scaling:  # mandatory
+        degree: 2       # not mandatory. It specifies the polynominal degree
+        columns:        # not mandatory
+          - Floors      # not mandatory
       ...
 
 The above configuration specifies that duplicate rows should be removed and missing values should be dropped.
@@ -59,16 +74,26 @@ ProxiFlow can also be used as a Python library. Here's an example:
     config = Config("myconfig.yaml")
 
     # Preprocess the data
-    dfl = Cleaner(config)
-    cleaned_df = dfl.clean_data(df)
+
+    # Clean the data
+    cleaner = Cleaner(config)
+    cleaned_data = cleaner.clean_data(data)
+
+    # Perform data normalization
+    normalizer = Normalizer(config)
+    normalized_data = normalizer.normalize(cleaned_data)
+
+    # Perform feature engineering
+    engineer = Engineer(config)
+    engineered_data = engineer.execute(normalized_data)
 
     # Write the output data
-    cleaned_df.write_csv("cleaned_data.csv")
+    engineered_data.write_csv("cleaned_data.csv")
 
-TODO
-----
+Log
+---
 
 - [x] Data cleaning
 - [x] Data normalization
-- [ ] Feature engineering
+- [x] Feature engineering
 

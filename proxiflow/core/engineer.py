@@ -1,6 +1,7 @@
 import polars as pl
 from proxiflow.config import Config
 from .core_utils import check_columns
+from proxiflow.utils import generate_trace
 
 
 class Engineer:
@@ -17,7 +18,7 @@ class Engineer:
         """
         self.config = config.feature_engineering_config
 
-    def engineer(self, df: pl.DataFrame) -> pl.DataFrame:
+    def execute(self, df: pl.DataFrame) -> pl.DataFrame:
         """
         Perform feature engineering on the specified DataFrame using the specified configuration.
 
@@ -31,16 +32,22 @@ class Engineer:
 
         if self.config["one_hot_encoding"]:
             # Perform feature engineering on the specified columns
-            engineered_df = self.one_hot_encode(
-                engineered_df, self.config["one_hot_encoding"]
-            )
+            try:
+                engineered_df = self.one_hot_encode(engineered_df, self.config["one_hot_encoding"])
+            except Exception as e:
+                trace = generate_trace(e, self.one_hot_encode)
+                raise Exception(f"Trying one-hot encoding: {trace}")
 
-        poly_cols = self.config["polynomial_features"]
-        if poly_cols:
-            # Perform feature engineering on the specified columns
-            engineered_df = self.polynomial_features(
-                engineered_df, poly_cols["columns"], poly_cols["degree"]
-            )
+        feature_scaling = self.config["feature_scaling"]
+        if feature_scaling:
+            # Perform feature scaling on the specified columns
+            try:
+                engineered_df = self.feature_scaling(
+                    engineered_df, feature_scaling["columns"], feature_scaling["degree"]
+                )
+            except Exception as e:
+                trace = generate_trace(e, self.feature_scaling)
+                raise Exception(f"Trying polynomial feature scaling: {trace}")
 
         return engineered_df
 
@@ -62,9 +69,7 @@ class Engineer:
 
         return clone_df.to_dummies(columns=columns)
 
-    def polynomial_features(
-        df: pl.DataFrame, columns: list[str], degree: int
-    ) -> pl.DataFrame:
+    def feature_scaling(self, df: pl.DataFrame, columns: list[str], degree: int) -> pl.DataFrame:
         """
         Creates polynomial features of the given degree for the specified columns of the given DataFrame.
 

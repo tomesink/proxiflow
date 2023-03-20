@@ -59,8 +59,8 @@ proxiflow = "proxiflow.cli:__main__"
 [tool.setuptools.packages]
 find = {}
 
-[tool.black.format]
-max-line-length = 120
+[tool.black]
+line-length = 120
 extend-ignore = "E203"
 
 [tool.ruff]

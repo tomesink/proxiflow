@@ -87,9 +87,7 @@ class Normalizer:
                 min_val = selected_df[col].min()
                 max_val = selected_df[col].max()
                 if max_val - min_val == 0:
-                    raise ValueError(
-                        f"Error normalizing min-max column {col}: division by zero"
-                    )
+                    raise ValueError(f"Error normalizing min-max column {col}: division by zero")
                 # Normalize the column
                 min_max = (df[col] - min_val) / (max_val - min_val)
                 clone_df.replace(col, min_max)

@@ -169,9 +169,7 @@ class Cleaner:
                 upper_bound = q3 + 1.5 * iqr
                 # Replace outliers with the median value of the series
                 median = clone_df[col].median()
-                serie = clone_df[col].apply(
-                    lambda x: median if x < lower_bound or x > upper_bound else x
-                )
+                serie = clone_df[col].apply(lambda x: median if x < lower_bound or x > upper_bound else x)
                 clone_df.replace(col, serie)
 
         return clone_df

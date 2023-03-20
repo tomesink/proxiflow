@@ -1,14 +1,14 @@
 input_format: csv
 output_format: csv
 
-data_cleaning:
+data_cleaning: #mandatory
   # NOTE: Not handling missing values can cause errors during data normalization
   handle_missing_values:
     drop: false
-    mean: false
-    # mode: true
+    mean: true # Only Int and Float columns are handled 
+    # mode: true # Turned off for now. 
 
-  handle_outliers: true
+  handle_outliers: true # Only Float columns are handled
   remove_duplicates: true
 
 data_normalization: # mandatory
@@ -21,19 +21,10 @@ data_normalization: # mandatory
     - Floors
 
 feature_engineering:
-  one_hot_encoding:
-    - gender
-    - ethnicity
+  one_hot_encoding: # mandatory
+    - Bedrooms      # not mandatory
 
-  feature_scaling:
-    columns:
-      - height
-      - weight
-    range:
-      - 0
-      - 1
-
-  feature_selection:
-    - age
-    - gender
-    - income
+  feature_scaling:  # mandatory
+    degree: 2       # not mandatory. It specifies the polynominal degree
+    columns:        # not mandatory
+      - Floors      # not mandatory
