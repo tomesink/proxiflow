@@ -5,7 +5,7 @@ def check_columns(df: pl.DataFrame, columns: list[str]) -> list[str]:
     # Check if columns exist in the DataFrame. If a column does not exist, remove it from the list.
     missing_columns = []
     for col in columns:
-        if not col in df.columns:
+        if col not in df.columns:
             missing_columns.append(col)
 
     # If all columns are missing, raise an error

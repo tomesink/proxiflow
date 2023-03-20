@@ -1,8 +1,7 @@
 import click
-import polars as pl
 
 from .config import Config
-from .utils import *
+from .utils import get_logger, load_data, write_data
 from .core import Cleaner, Normalizer, Engineer
 
 
