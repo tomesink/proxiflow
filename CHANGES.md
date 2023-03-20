@@ -1,4 +1,12 @@
+# Version 0.1.7
+
+Released 2023-03-20
+
+-   Fixed documentation generation
+
 # Version 0.1.6
+
+Released 2023-03-20
 
 -   Add basic feature engineering features
 -   Add unit tests for feature engineering features
