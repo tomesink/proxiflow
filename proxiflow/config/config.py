@@ -38,7 +38,7 @@ class Config:
             raise FileNotFoundError("Config file not found")
         except yaml.YAMLError as e:
             raise ValueError(f"Error parsing config file: {str(e)}")
-        
+
     @property
     def input_format(self) -> str:
         """
@@ -53,7 +53,7 @@ class Config:
             return self.config["input_format"]
         except KeyError:
             raise ValueError("input file format not found in config file")
-        
+
     @property
     def output_format(self) -> str:
         """
@@ -68,7 +68,6 @@ class Config:
             return self.config["output_format"]
         except KeyError:
             raise ValueError("output file format not found in config file")
-
 
     @property
     def cleaning_config(self) -> Dict:

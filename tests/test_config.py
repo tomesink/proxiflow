@@ -78,11 +78,7 @@ class TestConfig:
         """
         feature_engineering_config = config.feature_engineering_config
         assert isinstance(feature_engineering_config, dict)
-        assert len(feature_engineering_config) == 3
+        assert len(feature_engineering_config) == 2
         assert "one_hot_encoding" in feature_engineering_config
         assert "feature_scaling" in feature_engineering_config
-        assert "feature_selection" in feature_engineering_config
-        assert feature_engineering_config["one_hot_encoding"] == ["gender", "ethnicity"]
-        assert feature_engineering_config["feature_scaling"]["columns"] == ["height", "weight"]
-        assert feature_engineering_config["feature_scaling"]["range"] == [0, 1]
-        assert feature_engineering_config["feature_selection"] == ["age", "gender", "income"]
+     

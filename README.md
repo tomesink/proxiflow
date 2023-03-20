@@ -8,8 +8,10 @@
 
 # ProxiFlow
 
-ProxiFlow is a data preparation tool for machine learning that performs
+ProxiFlow is a data preprocessig tool for machine learning that performs
 data cleaning, normalization, and feature engineering.
+
+The biggest advantage if this library (which is basically a wrapper over [polars](https://github.com/pola-rs/polars) data frame) is that it is configurable via YAML configuration file which makes it suitable for MLOps pipelines or for building API requests over it.
 
 ## Documentation
 Read the full documentation [here](http://proxiflow.readthedocs.io/).
@@ -31,22 +33,36 @@ proxiflow --config-file myconfig.yaml --input-file mydata.csv --output-file clea
 Here\'s an example of a YAML configuration file:
 
 ``` yaml
-data_cleaning:
-  remove_duplicates: True
+input_format: csv
+output_format: csv
+
+data_cleaning: #mandatory
+  # NOTE: Not handling missing values can cause errors during data normalization
   handle_missing_values:
-    drop: True
+    drop: false
+    mean: true # Only Int and Float columns are handled 
+    # mode: true # Turned off for now. 
+
+  handle_outliers: true # Only Float columns are handled
+  remove_duplicates: true
 
 data_normalization: # mandatory
   min_max: #mandatory but values are not mandatory. It can be left empty
     # Specify columns:
     - Age # not mandatory
-  z_score:
+  z_score: 
     - Price 
   log:
     - Floors
 
 feature_engineering:
-  ...
+  one_hot_encoding: # mandatory
+    - Bedrooms      # not mandatory
+
+  feature_scaling:  # mandatory
+    degree: 2       # not mandatory. It specifies the polynominal degree
+    columns:        # not mandatory
+      - Floors      # not mandatory
 ```
 
 The above configuration specifies that duplicate rows should be removed
@@ -67,19 +83,24 @@ df = pl.read_csv("mydata.csv")
 # Load the configuration
 config = Config("myconfig.yaml")
 
-# Preprocess the data
-dfl = Cleaner(config)
-cleaned_df = dfl.clean_data(df)
+# Clean the data
+cleaner = Cleaner(config)
+cleaned_data = cleaner.clean_data(data)
+
+# Perform data normalization
+normalizer = Normalizer(config)
+normalized_data = normalizer.normalize(cleaned_data)
+
+# Perform feature engineering
+engineer = Engineer(config)
+engineered_data = engineer.execute(normalized_data)
 
 # Write the output data
-cleaned_df.write_csv("cleaned_data.csv")
+engineered_data.write_csv("cleaned_data.csv")
 ```
 
-## TODO
+## Log
 
 -   \[x\] Data cleaning
 -   \[x\] Data normalization
--   \[ \] Feature engineering
-
-Note: only data cleaning is currently implemented; data normalization
-and feature engineering are TODO features.
+-   \[x\] Feature engineering
