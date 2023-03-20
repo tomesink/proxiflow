@@ -73,7 +73,6 @@ class TestNormalizer():
         # Create the Normalizer object and apply log normalization to the input DataFrame
         normalizer = Normalizer(config)
         normalized_result = normalizer._log_normalize(df, ['col1', 'col2', 'col3'])
-        print(normalized_result)
         # Check that the output DataFrame is equal to the expected DataFrame
         np.testing.assert_allclose(normalized_result.to_numpy(), expected_df.to_numpy(), rtol=1e-5, atol=1e-8)
     

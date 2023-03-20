@@ -8,8 +8,10 @@
 
 # ProxiFlow
 
-ProxiFlow is a data preparation tool for machine learning that performs
+ProxiFlow is a data preprocessig tool for machine learning that performs
 data cleaning, normalization, and feature engineering.
+
+The biggest advantage if this library (which is basically a wrapper over [polars](https://github.com/pola-rs/polars) data frame) is that it is configurable via YAML configuration file which makes it suitable for MLOps pipelines or for building API requests over it.
 
 ## Documentation
 Read the full documentation [here](http://proxiflow.readthedocs.io/).
@@ -102,4 +104,3 @@ engineered_data.write_csv("cleaned_data.csv")
 -   \[x\] Data cleaning
 -   \[x\] Data normalization
 -   \[x\] Feature engineering
-

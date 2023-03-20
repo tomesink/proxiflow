@@ -88,11 +88,13 @@ class Engineer:
             return clone_df
         # Add polynomial features for each column
         for col in columns:
-            # Create a new column for each degree of the polynomial
-            degrees = range(2, degree + 1)
-            # Use list comprehension to generate the new columns
-            new_cols = [(pl.col(col) ** i).alias(f"{col}_{i}") for i in degrees]
-            # Combine the new columns with the original DataFrame
-            clone_df = clone_df.with_columns(*new_cols)
+            # We can not square root strings
+            if clone_df[col].dtype == pl.Int64 or clone_df[col].dtype == pl.Float64:
+                # Create a new column for each degree of the polynomial
+                degrees = range(2, degree + 1)
+                # Use list comprehension to generate the new columns
+                new_cols = [(pl.col(col) ** i).alias(f"{col}_{i}") for i in degrees]
+                # Combine the new columns with the original DataFrame
+                clone_df = clone_df.with_columns(*new_cols)
 
         return clone_df

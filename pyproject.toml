@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "proxiflow"
-version = "0.1.5"
+version = "0.1.6"
 description = "Data Preprocessing flow tool in python"
 authors = ["Martin Tomes <tomesm@gmail.com>"]
 license = "MIT"
