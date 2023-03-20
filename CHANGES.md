@@ -1,10 +1,7 @@
 # Version 0.1.6
 
-Unreleased
-
 -   Add basic feature engineering features
 -   Add unit tests for feature engineering features
--   Refactor data cleaning so it cleans data based on columns
 
 # Version 0.1.5
 
