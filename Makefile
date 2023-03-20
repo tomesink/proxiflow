@@ -30,11 +30,8 @@ test:
 	${MANAGER} run pytest -v
 
 doc:
-	@sphinx-apidoc -f -o ${DOC}/source ${NAME} --ext-autodoc && cd ${DOC} && make html
-	@cp -a ${DOC}/build/html/. docs 
-
-html:
-	cd ${DOC} && make html
+	@sphinx-apidoc -f -o ${DOC}/source ${NAME} --ext-autodoc && cd ${DOC}
+	@sphinx-build ${DOC}/source ${DOC}/build
 
 install:
 	${PYTHON} -m pip install .

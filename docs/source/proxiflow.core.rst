@@ -12,6 +12,22 @@ proxiflow.core.cleaner module
    :undoc-members:
    :show-inheritance:
 
+proxiflow.core.core\_utils module
+---------------------------------
+
+.. automodule:: proxiflow.core.core_utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+proxiflow.core.engineer module
+------------------------------
+
+.. automodule:: proxiflow.core.engineer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 proxiflow.core.normalizer module
 --------------------------------
 
