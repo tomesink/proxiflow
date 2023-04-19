@@ -101,6 +101,37 @@ engineered_data.write_csv("cleaned_data.csv")
 
 ## Log
 
--   \[x\] Data cleaning
+-   \[ ] Data cleaning
+    - \[ ] Missing values handling
+        - \[x\] Mean
+        - \[x\] Drop
+        - \[ ] KNN Imputer 
 -   \[x\] Data normalization
--   \[x\] Feature engineering
+    - \[x\] Min Max normalization
+    - \[x\] Z-Score normalization
+    - \[x\] Logarithmic normalization
+-   \[ ] Feature engineering
+    - \[x\] One Hot Encoding
+    - \[x\] Feature Scaling
+    - \[ ] Recursive Feature Elimination
+    - \[ ] SelectKBest
+    - \[ ] LASSO regularization
+-   \[ ] Text Preprocessing
+    - \[ ] Tokenization
+    - \[ ] Stemming
+    - \[ ] Stopword removal
+    - \[ ] Text Vectorization
+        - \[ ] Bag of Words
+        - \[ ] TF-IDF
+    - \[ ] Word embeddings
+        -  \[ ] Word2Vec
+        -  \[ ] GloVe
+        -  \[ ] BERT
+- \[ ] Categorical Encoding
+    - \[ ] Target encoding
+    - \[ ] Count encoding
+    - \[ ] Binary encoding
+- \[ ] Dimensionality reduction
+    - \[ ] Principal Component Analysis (PCA)
+    - \[ ] t-Distributed Stochastic Neighbor Embedding (t-SNE)
+    - \[ ] Uniform Manifold Approximation and Projection (UMAP) 
