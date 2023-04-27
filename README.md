@@ -105,7 +105,8 @@ engineered_data.write_csv("cleaned_data.csv")
     - \[ ] Missing values handling
         - \[x\] Mean
         - \[x\] Drop
-        - \[ ] KNN Imputer 
+        - \[x\] KNN Imputer 
+        - \[ ] Median
 -   \[x\] Data normalization
     - \[x\] Min Max normalization
     - \[x\] Z-Score normalization

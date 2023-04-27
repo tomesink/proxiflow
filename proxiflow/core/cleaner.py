@@ -1,4 +1,5 @@
 import polars as pl
+from sklearn.impute import KNNImputer
 from proxiflow.config import Config
 from proxiflow.utils import generate_trace
 
@@ -53,6 +54,14 @@ class Cleaner:
                 trace = generate_trace(e, self._mean_missing)
                 raise Exception(f"Trying to fill missing values with the mean: {trace}")
             return cleaned_df
+
+        # Fill missing values with KNN Imputer
+        if missing_values["knn"]:
+            try:
+                cleaned_df = self._knn_impute_missing(cleaned_df)
+            except Exception as e:
+                trace = generate_trace(e, self._knn_impute_missing)
+                raise Exception(f"Trying to fill missing values with KNN Imputer: {trace}")
 
         # NOTE: This is currently disabled because it randomly fails with:
         # Fill missing values with the mode of the column.
@@ -144,6 +153,27 @@ class Cleaner:
                 clone_df.replace(col, mode_s)
 
         return clone_df
+
+    def _knn_impute_missing(self, df: pl.DataFrame) -> pl.DataFrame:
+        """
+        Fill missing values using KNN imputation.
+        :param df: The DataFrame to fill missing values in.
+        :type df: polars.DataFrame
+        :returns: The DataFrame with missing values filled.
+        :rtype: polars.DataFrame
+        """
+        clone_df = df.clone()
+        # Convert the DataFrame to numpy array
+        np_df = clone_df.to_numpy()
+
+        # Initialize the KNN Imputer
+        knn_imputer = KNNImputer(n_neighbors=5, weights="uniform")
+        imputed_np_df = knn_imputer.fit_transform(np_df)
+
+        # Convert the imputed numpy array back to polars DataFrame
+        imputed_df = pl.DataFrame(imputed_np_df, schema=clone_df.schema)
+
+        return imputed_df
 
     # Handle outliers with IQR method
     def _handle_outliers(self, df: pl.DataFrame) -> pl.DataFrame:

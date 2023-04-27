@@ -5,8 +5,9 @@ data_cleaning: #mandatory
   # NOTE: Not handling missing values can cause errors during data normalization
   handle_missing_values:
     drop: false
-    mean: true # Only Int and Float columns are handled 
+    mean: false # Only Int and Float columns are handled 
     # mode: true # Turned off for now. 
+    knn: true
 
   handle_outliers: true # Only Float columns are handled
   remove_duplicates: true
@@ -14,17 +15,17 @@ data_cleaning: #mandatory
 data_normalization: # mandatory
   min_max: #mandatory but values are not mandatory. It can be left empty
     # Specify columns:
-    - Age # not mandatory
+    # - Age # not mandatory
   z_score: 
-    - Price 
+    # - Price 
   log:
-    - Floors
+    # - Floors
 
 feature_engineering:
   one_hot_encoding: # mandatory
-    - Bedrooms      # not mandatory
+    # - Bedrooms      # not mandatory
 
   feature_scaling:  # mandatory
     degree: 2       # not mandatory. It specifies the polynominal degree
     columns:        # not mandatory
-      - Floors      # not mandatory
+      # - Floors      # not mandatory

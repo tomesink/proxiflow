@@ -4,8 +4,8 @@ LINTER = ruff
 FORMATTER = black
 NAME=proxiflow
 DOC=docs
-MANAGER=poetry
 
+.PHONY = test
 
 # The @ makes sure that the command itself isn't echoed in the terminal
 help:
@@ -26,15 +26,18 @@ format:
 lint:
 	$(LINTER) check ${NAME}
 
+typecheck:
+	mypy proxiflow
+
 test:
-	${MANAGER} run pytest -v
+	${PYTHON} -m pytest -v
 
 doc:
 	@sphinx-apidoc -f -o ${DOC}/source ${NAME} --ext-autodoc && cd ${DOC}
 	@sphinx-build ${DOC}/source ${DOC}/build
 
 install:
-	${PYTHON} -m pip install .
+	${PYTHON} -m pip install .[dev,docs]
 
 build:
 	${MANAGER} build

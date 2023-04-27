@@ -4,6 +4,8 @@ from proxiflow.config import Config
 from proxiflow.utils import generate_trace
 from .core_utils import check_columns
 
+from typing import Dict, Any, List, Union, cast
+
 
 class Normalizer:
     """
@@ -17,7 +19,7 @@ class Normalizer:
         :param config: A Config object containing the normalization configuration values.
         :type config: Config
         """
-        self.config = config.normalization_config
+        self.config: Dict[str, Any] = config.normalization_config
 
     def normalize(self, df: pl.DataFrame) -> pl.DataFrame:
         """
@@ -30,17 +32,17 @@ class Normalizer:
         """
         normalized_df = df.clone()
         # Apply min-max normalization
-        min_max_cols = self.config["min_max"]
+        min_max_cols: List[str] = self.config["min_max"]
         if min_max_cols:
             # Normalize the specified columns
             try:
                 normalized_df = self._min_max_normalize(normalized_df, min_max_cols)
             except Exception as e:
-                trace = generate_trace(e, self._min_max_normalize)
+                trace: str = generate_trace(e, self._min_max_normalize)
                 raise Exception(f"Trying min-max normalization: {trace}")
 
         # Apply z-score normalization
-        z_score_cols = self.config["z_score"]
+        z_score_cols: List[str] = self.config["z_score"]
         if z_score_cols:
             # Normalize the specified columns
             try:
@@ -50,7 +52,7 @@ class Normalizer:
                 raise Exception(f"Trying z-score normalization: {trace}")
 
         # Apply log normalization
-        log_cols = self.config["log"]
+        log_cols: List[str] = self.config["log"]
         if log_cols:
             # Normalize the specified columns
             try:
@@ -61,7 +63,7 @@ class Normalizer:
 
         return normalized_df
 
-    def _min_max_normalize(self, df: pl.DataFrame, columns: list[str]) -> pl.DataFrame:
+    def _min_max_normalize(self, df: pl.DataFrame, columns: List[str]) -> pl.DataFrame:
         """
         Applies min-max normalization to the specified columns of the given DataFrame.
 
@@ -84,8 +86,8 @@ class Normalizer:
             # We can not subtract strings, so we only normalize numeric columns
             if clone_df[col].dtype == pl.Int64 or clone_df[col].dtype == pl.Float64:
                 # Get the min and max values of the column
-                min_val = selected_df[col].min()
-                max_val = selected_df[col].max()
+                min_val = cast(Union[int, float], selected_df[col].min())
+                max_val = cast(Union[int, float], selected_df[col].max())
                 if max_val - min_val == 0:
                     raise ValueError(f"Error normalizing min-max column {col}: division by zero")
                 # Normalize the column
@@ -94,7 +96,7 @@ class Normalizer:
 
         return clone_df
 
-    def _z_score_normalize(self, df: pl.DataFrame, columns: list[str]) -> pl.DataFrame:
+    def _z_score_normalize(self, df: pl.DataFrame, columns: List[str]) -> pl.DataFrame:
         """
         Applies z-score normalization to the specified columns of the given DataFrame.
 
@@ -122,7 +124,7 @@ class Normalizer:
 
         return clone_df
 
-    def _log_normalize(self, df: pl.DataFrame, columns: list[str]) -> pl.DataFrame:
+    def _log_normalize(self, df: pl.DataFrame, columns: List[str]) -> pl.DataFrame:
         """
         Applies log normalization to the specified columns of the given DataFrame.
 

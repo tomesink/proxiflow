@@ -1,7 +1,7 @@
 import logging
 
 
-def get_logger(name, level=logging.INFO):
+def get_logger(name: str, level: int = logging.INFO) -> logging.Logger:
     """
     Create a logger instance with the specified name and log level.
 

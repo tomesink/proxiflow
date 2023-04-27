@@ -17,6 +17,7 @@ class Engineer:
         :type config: Config
         """
         self.config = config.feature_engineering_config
+        print(self.config)
 
     def execute(self, df: pl.DataFrame) -> pl.DataFrame:
         """
@@ -83,9 +84,11 @@ class Engineer:
         :rtype: polars.DataFrame
         """
         clone_df = df.clone()
-        columns = check_columns(clone_df, columns)
-        if len(columns) == 0:
+
+        if not columns:
             return clone_df
+
+        columns = check_columns(clone_df, columns)
         # Add polynomial features for each column
         for col in columns:
             # We can not square root strings
