@@ -41,7 +41,8 @@ dev = [
     "pytype",
     "ruff",
     "pytest",
-    "mypy"
+    "mypy",
+    "build"
 ]
 docs = [
     "sphinx-rtd-theme>=1.2.0",

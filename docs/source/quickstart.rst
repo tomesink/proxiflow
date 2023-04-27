@@ -33,6 +33,7 @@ Here's an example of a YAML configuration file:
         drop: false
         mean: true # Only Int and Float columns are handled 
         # mode: true # Turned off for now. 
+        knn: true
 
       handle_outliers: true # Only Float columns are handled
       remove_duplicates: true

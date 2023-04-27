@@ -4,6 +4,7 @@ LINTER = ruff
 FORMATTER = black
 NAME=proxiflow
 DOC=docs
+VERSION=0.1.8
 
 .PHONY = test
 
@@ -40,16 +41,16 @@ install:
 	${PYTHON} -m pip install .[dev,docs]
 
 build:
-	${MANAGER} build
+	python -m build
 
 dev:
 	@${PYTHON} -m ${NAME} --config-file=tests/data/config.yaml --input-file=tests/data/input.csv --output-file=tests/data/output.csv
 
 publish-test:
-	${MANAGER} publish --repository test-pypi
+	twine upload -r testpypi dist/proxiflow-${VERSION}.tar.gz
 
 publish:
-	${MANAGER} publish
+	twine upload dist/proxiflow-${VERSION}.tar.gz
 
 check-build:
 	twine check dist/*
