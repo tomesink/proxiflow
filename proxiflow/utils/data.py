@@ -1,7 +1,8 @@
 import polars as pl
+from typing import Optional
 
 
-def load_data(data_file: str, input_file_format: str) -> pl.DataFrame:
+def load_data(data_file: str, input_file_format: str) -> Optional[pl.DataFrame]:
     """
     Load a CSV file and return a polars DataFrame.
 
@@ -16,16 +17,14 @@ def load_data(data_file: str, input_file_format: str) -> pl.DataFrame:
     """
     try:
         if input_file_format == "csv":
-            # Attempt to load the CSV file
             df = pl.read_csv(data_file)
             if df.shape[0] == 0:
                 raise ValueError("Data file is empty")
             return df
+        return None
     except FileNotFoundError:
-        # If the file is not found, raise a FileNotFoundError
         raise FileNotFoundError("Data file not found")
     except Exception as e:
-        # If there is an error loading the CSV file, raise a ValueError with the error message
         raise ValueError(f"Error loading data file: {str(e)}")
 
 
@@ -44,6 +43,6 @@ def write_data(data: pl.DataFrame, output_file: str, output_file_format: str) ->
     """
     try:
         if output_file_format == "csv":
-            data.write_csv(output_file, sep=",")
+            data.write_csv(file=output_file)
     except Exception as e:
         raise Exception(f"Error writing data to {output_file}: {str(e)}")

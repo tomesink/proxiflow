@@ -2,9 +2,11 @@ import traceback
 import inspect
 import os
 import sys
+from typing import Callable
+import polars as pl
 
 
-def generate_trace(exception, target_method):
+def generate_trace(exception: Exception, target_method: Callable[..., pl.DataFrame]) -> str:
     """
     Generate a custom error message containing the file name, line number, and error description.
 

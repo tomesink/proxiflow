@@ -1,5 +1,5 @@
 import yaml
-from typing import Dict
+from typing import Dict, Any, cast
 
 
 class Config:
@@ -15,7 +15,7 @@ class Config:
         self.config = self.load_config(file_path)
 
     @staticmethod
-    def load_config(file_path: str) -> Dict:
+    def load_config(file_path: str) -> Dict[str, Any]:
         """
         Load a YAML configuration file from the specified file path.
 
@@ -27,12 +27,15 @@ class Config:
 
         :raises FileNotFoundError: If the specified file path does not exist.
         :raises ValueError: If the specified file is empty or cannot be parsed as YAML.
+        :raises TypeError: If the loaded YAML data is not a dictionary with string keys.
         """
         try:
             with open(file_path, "r") as f:
-                config = yaml.safe_load(f)
+                config = cast(Dict[str, Any], yaml.safe_load(f))
             if config is None:
                 raise ValueError("Config file is empty")
+            if not isinstance(config, dict) or not all(isinstance(k, str) for k in config.keys()):
+                raise TypeError("The loaded YAML data is not a dictionary with string keys")
             return config
         except FileNotFoundError:
             raise FileNotFoundError("Config file not found")
@@ -50,7 +53,7 @@ class Config:
         :raises ValueError: If the "input_format" key is not present in the configuration dictionary.
         """
         try:
-            return self.config["input_format"]
+            return cast(str, self.config["input_format"])
         except KeyError:
             raise ValueError("input file format not found in config file")
 
@@ -65,12 +68,12 @@ class Config:
         :raises ValueError: If the "output_format" key is not present in the configuration dictionary.
         """
         try:
-            return self.config["output_format"]
+            return cast(str, self.config["output_format"])
         except KeyError:
             raise ValueError("output file format not found in config file")
 
     @property
-    def cleaning_config(self) -> Dict:
+    def cleaning_config(self) -> Dict[str, Any]:
         """
         Get the data cleaning configuration values from the configuration dictionary.
 
@@ -80,12 +83,12 @@ class Config:
         :raises ValueError: If the "data_cleaning" key is not present in the configuration dictionary.
         """
         try:
-            return self.config["data_cleaning"]
+            return cast(Dict[str, Any], self.config["data_cleaning"])
         except KeyError:
             raise ValueError("data_cleaning config not found in config file")
 
     @property
-    def normalization_config(self) -> Dict:
+    def normalization_config(self) -> Dict[str, Any]:
         """
         Get the data normalization configuration values from the configuration dictionary.
 
@@ -95,12 +98,12 @@ class Config:
         :raises ValueError: If the "data_normalization" key is not present in the configuration dictionary.
         """
         try:
-            return self.config["data_normalization"]
+            return cast(Dict[str, Any], self.config["data_normalization"])
         except KeyError:
             raise ValueError("data_normalization config not found in config file")
 
     @property
-    def feature_engineering_config(self) -> Dict:
+    def feature_engineering_config(self) -> Dict[str, Any]:
         """
         Get the feature engineering configuration values from the configuration dictionary.
 
@@ -110,6 +113,6 @@ class Config:
         :raises ValueError: If the "feature_engineering" key is not present in the configuration dictionary.
         """
         try:
-            return self.config["feature_engineering"]
+            return cast(Dict[str, Any], self.config["feature_engineering"])
         except KeyError:
             raise ValueError("feature_engineering config not found in config file")

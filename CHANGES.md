@@ -1,3 +1,10 @@
+# Version 0.1.8
+
+Released 2023-04-27
+
+-   Add KNN imputation support for handling missing values
+-   poetry build system replaced by setuptools
+
 # Version 0.1.7
 
 Released 2023-03-20
