@@ -55,6 +55,15 @@ class Cleaner:
                 raise Exception(f"Trying to fill missing values with the mean: {trace}")
             return cleaned_df
 
+        # Fill missing values with the median of the column
+        if missing_values["median"]:
+            try:
+                cleaned_df = self._median_missing(cleaned_df)
+            except Exception as e:
+                trace = generate_trace(e, self._median_missing)
+                raise Exception(f"Trying to fill missing values with the median: {trace}")
+            return cleaned_df
+
         # Fill missing values with KNN Imputer
         if missing_values["knn"]:
             try:
@@ -131,6 +140,27 @@ class Cleaner:
                 clone_df.replace(col, mean_s)
 
         return clone_df
+
+    def _median_missing(self, df: pl.DataFrame) -> pl.DataFrame:
+        """
+        Fill missing values with the median of the column.
+
+        :param df: The DataFrame to fill missing values in.
+        :type df: polars.DataFrame
+
+        :returns: The DataFrame with missing values filled.
+        :rtype: polars.DataFrame
+        """
+        clone_df = df.clone()
+        for col in clone_df.columns:
+            # Only Integers and Floats supported
+            if clone_df[col].dtype == pl.Int64 or clone_df[col].dtype == pl.Float64:
+                median = clone_df[col].median()
+                median_s = clone_df[col].fill_null(median)
+                clone_df.replace(col, median_s)
+
+        return clone_df
+
 
     # TODO: Investigate why this randomly fails with:
     #  Error cleaning data: must specify either a fill 'value' or 'strategy'
