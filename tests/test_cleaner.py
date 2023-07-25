@@ -92,6 +92,24 @@ class TestCleaner:
         expected = pl.DataFrame({"A": [1, 2, 3, 2], "B": [4.0, 5.0, 5.333333, 7.0]})
         np.testing.assert_allclose(cleaned_data.to_numpy(), expected.to_numpy(), rtol=1e-5, atol=1e-8)
 
+    def test_median_missing(self, cleaner):
+        """
+        Test the median_missing method of the Cleaner class.
+
+        Parameters:
+        config (Config): The Config object to use for testing.
+
+        Returns:
+        None
+
+        Raises:
+        AssertionError: If the test fails.
+        """
+        df_with_nulls = pl.DataFrame({"A": [1, 2, 3, None], "B": [4.0, 5.0, None, 7.0]})
+        cleaned_data = cleaner._median_missing(df_with_nulls)
+        expected = pl.DataFrame({"A": [1, 2, 3, 2], "B": [4.0, 5.0, 5.0, 7.0]})
+        np.testing.assert_allclose(cleaned_data.to_numpy(), expected.to_numpy(), rtol=1e-5, atol=1e-8)
+
     def test_mode_missing(self, cleaner):
         """
         Test the mode_missing method of the Cleaner class.
