@@ -102,12 +102,12 @@ engineered_data.write_csv("cleaned_data.csv")
 
 ## Log
 
--   \[ ] Data cleaning
-    - \[ ] Missing values handling
+-   \[x\] Data cleaning
+    - \[x\] Missing values handling
         - \[x\] Mean
         - \[x\] Drop
         - \[x\] KNN Imputer 
-        - \[ ] Median
+        - \[x\] Median
 -   \[x\] Data normalization
     - \[x\] Min Max normalization
     - \[x\] Z-Score normalization
