@@ -4,7 +4,7 @@ LINTER = ruff
 FORMATTER = black
 NAME=proxiflow
 DOC=docs
-VERSION=0.1.8
+VERSION=0.1.9
 
 .PHONY = test
 

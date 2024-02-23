@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "proxiflow"
-version = "0.1.8"
+version = "0.1.9"
 description = "Data Preprocessing flow tool in python"
 authors = [
   {name="Martin Tomes", email= "tomesm@gmail.com"},
@@ -51,9 +51,9 @@ docs = [
 
 
 [project.urls]
-"Repository" = "https://github.com/tomesm/proxiflow"
+"Repository" = "https://github.com/tomesink/proxiflow"
 "Documentation" = "http://proxiflow.readthedocs.io"
-"Bug Tracker" = "https://github.com/tomesm/proxiflow/issues"
+"Bug Tracker" = "https://github.com/tomesink/proxiflow/issues"
 
 [tool.setuptools.packages]
 find = {}
